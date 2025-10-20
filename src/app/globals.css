@@ -1,26 +1,292 @@
 @import "tailwindcss";
+/*---break--- */
+@custom-variant dark (&:is(.dark *));
+@plugin "tailwindcss-animate";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+
+  /*LIGHT THEME */
+  /* Layout */
+  --color-background: rgba(255, 255, 255, 1); /* pure white */
+  --color-foreground: rgba(0, 0, 0, 1); /* black text */
+
+  /* Borders / outlines */
+  --color-border: rgba(229, 231, 235, 1); /* light gray border */
+
+  /* Surfaces */
+  --color-card: rgba(255, 255, 255, 1); /* white card background */
+  --color-card-foreground: rgba(0, 0, 0, 1); /* black text on cards */
+  --color-popover: rgba(255, 255, 255, 1); /* white popover background */
+  --color-popover-foreground: rgba(0, 0, 0, 1); /* black text on popovers */
+
+  /* Brand colors */
+  --color-primary: rgba(111, 66, 255, 1); /* vivid purple */
+  --color-primary-foreground: rgba(255, 255, 255, 1); /* white text on purple */
+
+  /* Announcement bar */
+  --color-announcement: rgba(255, 92, 167, 1); /* bright pink */
+  --color-announcement-foreground: rgba(
+    255,
+    255,
+    255,
+    1
+  ); /* white text on pink */
+
+  /* Neutral tones */
+  --color-secondary: rgba(245, 245, 245, 1); /* light gray background */
+  --color-secondary-foreground: rgba(0, 0, 0, 1); /* black text on gray */
+  --color-muted: rgba(245, 245, 245, 1); /* muted gray surface */
+  --color-muted-foreground: rgba(115, 115, 115, 1); /* medium gray text */
+
+  /* Accent */
+  --color-accent: rgba(111, 66, 255, 1); /* same as primary */
+  --color-accent-foreground: rgba(255, 255, 255, 1); /* white text on accent */
+
+  /* Badges */
+  --color-badge-new: rgba(217, 255, 0, 1); /* neon yellow-green */
+  --color-badge-new-foreground: rgba(0, 0, 0, 1); /* black text on badge */
+  --color-badge-sale: rgba(255, 77, 79, 1); /* red sale badge */
+  --color-badge-sale-foreground: rgba(
+    255,
+    255,
+    255,
+    1
+  ); /* white text on sale badge */
+
+  /* System / error colors */
+  --color-destructive: rgba(255, 99, 71, 1); /* tomato red error */
+  --color-destructive-foreground: rgba(
+    255,
+    255,
+    255,
+    1
+  ); /* white text on error */
+
+  /* Inputs / focus */
+  --color-input: rgba(229, 231, 235, 1); /* input border gray */
+  --color-ring: rgba(111, 66, 255, 1); /* purple focus ring */
+
+  /* Shape radius */
+  --radius: 0.5rem; /* 8 px corner radius */
+
+  /* Sidebar palette */
+  --color-sidebar: rgba(250, 250, 250, 1); /* off-white sidebar bg */
+  --color-sidebar-foreground: rgba(66, 66, 66, 1); /* dark gray text */
+  --color-sidebar-primary: rgba(
+    26,
+    26,
+    26,
+    1
+  ); /* near-black sidebar highlight */
+  --color-sidebar-primary-foreground: rgba(250, 250, 250, 1); /* white text */
+  --color-sidebar-accent: rgba(245, 245, 245, 1); /* light accent background */
+  --color-sidebar-accent-foreground: rgba(26, 26, 26, 1); /* dark text */
+  --color-sidebar-border: rgba(229, 231, 235, 1); /* gray border */
+  --color-sidebar-ring: rgba(37, 99, 235, 1); /* blue focus ring */
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* -------------------------------------------------------
+   DARK THEME — tokens swapped when html.dark is active
+---------------------------------------------------------- */
+:root.dark {
+  --color-background: rgba(255, 0, 0, 1); /* test: bright red background */
+  --color-foreground: rgba(250, 250, 250, 1); /* near-white text */
+
+  --color-border: rgba(51, 51, 51, 1); /* dark gray border */
+
+  --color-card: rgba(26, 26, 26, 1); /* dark card */
+  --color-card-foreground: rgba(250, 250, 250, 1); /* light text on card */
+  --color-popover: rgba(26, 26, 26, 1); /* dark popover */
+  --color-popover-foreground: rgba(250, 250, 250, 1); /* light text */
+
+  --color-primary: rgba(111, 66, 255, 1); /* purple stays same */
+  --color-primary-foreground: rgba(255, 255, 255, 1);
+  --color-announcement: rgba(255, 92, 167, 1); /* pink stays same */
+  --color-announcement-foreground: rgba(255, 255, 255, 1);
+
+  --color-secondary: rgba(38, 38, 38, 1); /* dark gray */
+  --color-secondary-foreground: rgba(250, 250, 250, 1);
+  --color-muted: rgba(38, 38, 38, 1);
+  --color-muted-foreground: rgba(166, 166, 166, 1);
+
+  --color-accent: rgba(111, 66, 255, 1);
+  --color-accent-foreground: rgba(255, 255, 255, 1);
+
+  --color-badge-new: rgba(217, 255, 0, 1);
+  --color-badge-new-foreground: rgba(0, 0, 0, 1);
+  --color-badge-sale: rgba(255, 77, 79, 1);
+  --color-badge-sale-foreground: rgba(255, 255, 255, 1);
+
+  --color-destructive: rgba(128, 0, 0, 1); /* dark maroon */
+  --color-destructive-foreground: rgba(250, 250, 250, 1);
+
+  --color-input: rgba(51, 51, 51, 1);
+  --color-ring: rgba(111, 66, 255, 1);
+
+  --color-sidebar: rgba(26, 26, 26, 1);
+  --color-sidebar-foreground: rgba(245, 245, 245, 1);
+  --color-sidebar-primary: rgba(59, 130, 246, 1); /* blue highlight */
+  --color-sidebar-primary-foreground: rgba(255, 255, 255, 1);
+  --color-sidebar-accent: rgba(38, 38, 38, 1);
+  --color-sidebar-accent-foreground: rgba(245, 245, 245, 1);
+  --color-sidebar-border: rgba(38, 38, 38, 1);
+  --color-sidebar-ring: rgba(59, 130, 246, 1);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* -------------------------------------------------------
+   Base / helpers / components
+---------------------------------------------------------- */
+* {
+  @apply border-border;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  @apply bg-background text-foreground font-sans antialiased;
+}
+
+/* Sheet / Drawer overlay */
+.sheet-overlay {
+  @apply fixed inset-0 z-50 bg-black/80
+         data-[state=open]:animate-in
+         data-[state=closed]:animate-out
+         data-[state=closed]:fade-out-0
+         data-[state=open]:fade-in-0;
+}
+
+/* Product card */
+.product-card {
+  @apply bg-card border border-border rounded-lg overflow-hidden transition-shadow hover:shadow-lg;
+}
+
+/* Badges */
+.badge-new {
+  @apply bg-badge-new text-badge-new-foreground px-2 py-1 text-xs font-semibold rounded;
+}
+
+.badge-sale {
+  @apply bg-badge-sale text-badge-sale-foreground px-2 py-1 text-xs font-semibold rounded;
+}
+
+/*---break--- */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+/*---break--- */
+
+:root {
+  --radius: 0.625rem;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+/*---break--- */
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
+}
+
+/*---break--- */
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
 }
