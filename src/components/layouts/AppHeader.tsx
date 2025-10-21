@@ -97,14 +97,18 @@ import TopAnnouncementBar from "./TopAnnouncementBar";
 import MainHeader from "./MainHeader";
 import MainNav from "./MainNav";
 import CartDrawer from "./CartDrawer";
+import StoreInfoBar from "./StoreInfoBar";
 
 export default function AppHeader() {
   return (
     <header className="sticky top-0 z-50 shadow-[0_1px_0_rgba(255,255,255,0.06)]">
       <TopContactBar />
+      <StoreInfoBar />
       <TopAnnouncementBar />
-      <MainHeader />
-      <MainNav />
+      <div className="bg-black">
+        <MainHeader />
+        <MainNav />
+      </div>
       <CartDrawer />
     </header>
   );

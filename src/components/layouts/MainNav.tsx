@@ -3,30 +3,44 @@
 import Link from "next/link";
 import { Menu } from "lucide-react";
 import CategoryTrigger from "./CategoryTrigger";
+import Image from "next/image";
+import SearchBar from "../custom-ui/SearchBar";
 
-const nav = ["iPhone", "iPad", "MacBook", "Apple Airpods", "Smarthome", "Príslušenstvo"];
+const nav = [
+  "iPhone",
+  "iPad",
+  "MacBook",
+  "Apple Airpods",
+  "Smarthome",
+  "Príslušenstvo",
+];
 
 export default function MainNav() {
   return (
-    <nav className="bg-ink text-white border-t border-white/10">
-      <div className="container-xl h-12 flex items-center gap-4">
-        {/* “Všetky kategórie” trigger */}
+    <nav className="bg-ink text-white px-10 pb-4">
+      <div className="container-xl h-12 flex items-center justify-between gap-4">
         <div className="mr-2">
           <CategoryTrigger>
-            <div className="inline-flex items-center gap-2 bg-white text-black rounded-md px-3 py-2">
+            <div className="inline-flex items-center gap-2 bg-white text-black font-bold px-3 py-2">
               <span>Všetky kategórie</span>
-              <Menu className="h-4 w-4" />
+              <Image
+                src="/icons/menu.svg"
+                alt="Výpredaj icon"
+                width={20}
+                height={20}
+                className="h-7 w-7"
+              />
             </div>
           </CategoryTrigger>
         </div>
 
         {/* section links */}
-        <div className="flex items-center gap-6 overflow-x-auto">
+        <div className="flex items-center gap-10 overflow-x-auto lg:mr-28">
           {nav.map((label) => (
             <Link
               key={label}
               href={`/category/${label.toLowerCase().replaceAll(" ", "-")}`}
-              className="whitespace-nowrap hover:underline"
+              className="whitespace-nowrap"
             >
               {label}
             </Link>
@@ -34,7 +48,9 @@ export default function MainNav() {
         </div>
 
         {/* mobile search (optional) */}
-        <div className="ml-auto block md:hidden" />
+        <div className="">
+           <SearchBar className="hidden md:block w-[290px]" />
+        </div>
       </div>
     </nav>
   );
