@@ -1,85 +1,203 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Mail } from "lucide-react";
+import {
+  Search,
+  Facebook,
+  Instagram,
+  Youtube,
+  MessageCircle,
+  Music2,
+} from "lucide-react";
+import SearchBar from "../custom-ui/SearchBar";
 
 /**
- * Footer (Next.js version)
- * - Replaces react-router-dom Link with next/link
- * - Keeps your sections structure + newsletter card
- * - Uses design tokens (bg-secondary, border, etc.)
+ * Footer – matches the provided design:
+ *  - Left: big logo, headline, paragraph, contact block, socials
+ *  - Right (top): purple newsletter card with input + tiny search button + submit button
+ *  - Right (bottom): 4 link columns
+ *  - Bottom bar: countries (left, faint) + payment icons (right)
  */
 export default function Footer() {
-  const sections = [
-    {
-      title: "Zákaznícky servis",
-      links: [
-        { label: "Kontakt", href: "/kontakt" },
-        { label: "FAQ", href: "/faq" },
-        { label: "Vrátenie tovaru", href: "/vratenie" },
-        { label: "Reklamácie", href: "/reklamacie" },
-      ],
-    },
-    {
-      title: "Iné",
-      links: [
-        { label: "O nás", href: "/o-nas" },
-        { label: "Blog", href: "/blog" },
-        { label: "Kariéra", href: "/kariera" },
-      ],
-    },
-    {
-      title: "Mobilecare",
-      links: [
-        { label: "Predajne", href: "/predajne" },
-        { label: "MC Servis", href: "/servis" },
-        { label: "Obchodné podmienky", href: "/podmienky" },
-      ],
-    },
-  ] as const;
+  const columns: { title: string; links: { label: string; href: string }[] }[] =
+    [
+      {
+        title: "Customer service",
+        links: [
+          { label: "Kontaktujte nás", href: "/kontakt" },
+          { label: "FAQs", href: "/faq" },
+          { label: "Vrátenie zásielky", href: "/vratenie" },
+          { label: "Doručenie", href: "/doručenie" },
+          { label: "Sledovanie zásielky", href: "/sledovanie" },
+          { label: "Platby a cenotvorba", href: "/platby" },
+        ],
+      },
+      {
+        title: "Iné",
+        links: [
+          { label: "Iné iné a niečo iné", href: "#" },
+          { label: "Iné iné a niečo iné", href: "#" },
+          { label: "Iné iné iné", href: "#" },
+          { label: "Iné iné a iné", href: "#" },
+        ],
+      },
+      {
+        title: "Mobilecare",
+        links: [
+          { label: "O nás", href: "/o-nas" },
+          { label: "Blog", href: "/blog" },
+          { label: "Kariéra", href: "/kariera" },
+        ],
+      },
+      {
+        title: "Členstvo, zľavy a akcie",
+        links: [
+          { label: "Odporuč nás a dostaň zľavu 10%", href: "#" },
+          { label: "Vernostný program", href: "#" },
+        ],
+      },
+    ];
+
+  const paymentIcons = [
+    { src: "/icons/visa.svg", alt: "Visa" },
+    { src: "/icons/mastercard.svg", alt: "Mastercard" },
+    { src: "icons/amex.svg", alt: "American Express" },
+    { src: "/icons/gpay.svg", alt: "Google Pay" },
+    { src: "/icons/applepay.svg", alt: "Apple Pay" },
+    { src: "/icons/paypal.svg", alt: "PayPal" },
+  ];
 
   return (
-    <footer className="bg-secondary border-t border-border mt-16">
-      <div className="container mx-auto py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
-          {/* Brand / Newsletter */}
-          <div className="lg:col-span-2">
-            <div className="font-bold text-2xl text-primary mb-4">mobilecare</div>
-            <p className="text-sm text-muted-foreground mb-6">Postaráme sa o vás</p>
+    <footer className="bg-black text-white mt-16 pl-2 pr-10">
+      {/* Top Grid */}
+      <div className="container-xl py-14 grid grid-cols-1 lg:grid-cols-2 gap-10">
+        {/* Left block */}
+        <div className="space-y-8">
+          <Image
+            src="/logos/logo.svg"
+            alt="mobilecare"
+            width={100}
+            height={56}
+            priority
+            className="h-auto w-96"
+          />
 
-            <div className="bg-primary text-primary-foreground rounded-lg p-6">
-              <h3 className="font-semibold mb-2">Získaj 10% zľavu</h3>
-              <p className="text-sm opacity-90 mb-4">
-                Prihláste sa k odberu newslettera a získajte zľavový kupón
-              </p>
-              <div className="flex gap-2">
-                <Input
-                  type="email"
-                  placeholder="Váš email"
-                  className="bg-white text-foreground border-none"
-                  aria-label="Váš email"
-                />
-                <Button variant="secondary" size="icon" aria-label="Odoslať email">
-                  <Mail className="h-4 w-4" />
-                </Button>
-              </div>
-            </div>
+          <div className="pl-8">
+            <h3 className="text-2xl md:text-3xl font-extrabold tracking-tight">
+              Postaráme sa o vás
+            </h3>
+            <p className="mt-4 max-w-md text-white/80">
+              Odomknite nekonečné možnosti s naším prémiovým výberom Apple
+              produktov.
+            </p>
+          </div>
+        </div>
+
+        {/* Right block */}
+        <aside className="w-full h-fit flex flex-col justify-center gap-4 p-8 bg-[#6A4EF5] text-white relative">
+          {/* Discount badge (top-right) */}
+          <div className="absolute right-6 top-6 select-none">
+            <Image
+              src="/icons/percentage-star.svg"
+              alt="Výpredaj icon"
+              width={16}
+              height={16}
+              className="h-14 w-14"
+            />
           </div>
 
-          {/* Link sections */}
-          {sections.map((section) => (
-            <div key={section.title}>
-              <h3 className="font-semibold mb-4">{section.title}</h3>
-              <ul className="space-y-2">
-                {section.links.map((link) => (
-                  <li key={link.href}>
-                    <Link
-                      href={link.href}
-                      className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-                    >
-                      {link.label}
+          <h3 className="text-3xl md:text-4xl font-extrabold">
+            Získaj 10% zľavu
+          </h3>
+          <p className="mt-3 max-w-xl text-white/80 lg:mb-3">
+            Ušetrite 10% na ďalšom nákupe produktov Apple, ak sa ešte dnes
+            pripojíte k našej komunite odberateľov noviniek!
+          </p>
+
+          {/* Newsletter input + tiny search button + submit */}
+          <div className="mt-6 flex gap-3 items-center">
+            <div className="relative flex-1">
+              <SearchBar placeholder="Vaša e-mailová adresa" />
+            </div>
+            <Button
+              className="h-12 px-10 bg-black text-white rounded-none hover:bg-black/80"
+              aria-label="Odoslať"
+            >
+              Odoslať
+            </Button>
+          </div>
+        </aside>
+      </div>
+
+      {/* Link columns */}
+      <div className="parent grid grid-cols-[1fr_1fr_2fr]">
+        <div className="flex flex-col gap-28 pl-8">
+          <div className="flex flex-col space-y-3">
+            <h5 className="font-semibold mb-3">Kontaktné údaje</h5>
+            <Link href="#" className="text-sm text-white/80 hover:underline">
+              +421 919 215 491
+            </Link>
+            <Link href="#" className="text-sm text-white/80 hover:underline">
+              Rastislavova 68, Košice
+            </Link>
+          </div>
+          <div className="flex flex-col gap-2">
+            {/* Socials */}
+            <section className="space-y-3">
+              <h5 className="font-semibold mb-3">Sledujte nás</h5>
+              <div className="flex items-center gap-4">
+                <Image
+                  src="/icons/facebook.svg"
+                  alt="Výpredaj icon"
+                  width={16}
+                  height={16}
+                  className="h-4 w-4"
+                />
+                <Image
+                  src="/icons/instagram.svg"
+                  alt="Výpredaj icon"
+                  width={16}
+                  height={16}
+                  className="h-4 w-4"
+                />
+                <Image
+                  src="/icons/youtube.svg"
+                  alt="Výpredaj icon"
+                  width={16}
+                  height={16}
+                  className="h-4 w-4"
+                />
+                <Image
+                  src="/icons/whatsapp.svg"
+                  alt="Výpredaj icon"
+                  width={16}
+                  height={16}
+                  className="h-4 w-4"
+                />
+                <Image
+                  src="/icons/tiktok.svg"
+                  alt="Výpredaj icon"
+                  width={16}
+                  height={16}
+                  className="h-4 w-4"
+                />
+              </div>
+            </section>
+          </div>
+        </div>
+        <div className="second-column"></div>
+        <div className="grid grid-cols-4 pb-10 ml-4.5">
+          {columns.map((col) => (
+            <div key={col.title}>
+              <h5 className="font-semibold mb-3">{col.title}</h5>
+              <ul className="space-y-5 text-sm text-white/80">
+                {col.links.map((l) => (
+                  <li key={l.label}>
+                    <Link href={l.href} className="hover:underline">
+                      {l.label}
                     </Link>
                   </li>
                 ))}
@@ -87,27 +205,32 @@ export default function Footer() {
             </div>
           ))}
         </div>
+      </div>
 
-        {/* Bottom bar */}
-        <div className="mt-12 pt-8 border-t border-border flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} Mobilecare. Všetky práva vyhradené.
-          </p>
+      {/* Countries + payment icons row */}
+      <div className="container-xl pb-6">
+        <div className="grid grid-cols-2 lg:grid-cols-[1fr_1fr_1fr_1fr] gap-20 text-2xl md:text-3xl font-extrabold text-white/10 pl-8">
+          <div className="text-start">Slovensko</div>
+          <div className="text-center">Česká republika</div>
+          <div className="text-center">România</div>
+          <div className="text-end">Polska</div>
+        </div>
 
-          <div className="flex items-center gap-4">
-            <span className="text-sm text-muted-foreground">Platobné metódy:</span>
-            <div className="flex gap-2">
-              {["Visa", "MC", "PayPal", "Apple Pay"].map((method) => (
-                <div
-                  key={method}
-                  className="bg-background border border-border rounded px-3 py-1 text-xs font-medium"
-                >
-                  {method}
-                </div>
-              ))}
-            </div>
+        <div className="mt-8 flex items-center justify-end">
+          <div className="flex items-center gap-2">
+            {paymentIcons.map((p) => (
+              <div
+                key={p.alt}
+                className="bg-white rounded py-1 px-2 grid place-items-center"
+              >
+                <Image src={p.src} alt={p.alt} width={36} height={22} />
+              </div>
+            ))}
           </div>
         </div>
+      </div>
+      <div className="text-xs text-white/30 pl-8 pb-14">
+        Podmienky používania  GDPR  Ochrana osobných údajov
       </div>
     </footer>
   );
