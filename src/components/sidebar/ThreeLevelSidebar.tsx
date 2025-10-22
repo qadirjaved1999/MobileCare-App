@@ -15,6 +15,7 @@ import { categoryTree } from "@/data/categories";
 import { useSidebar } from "@/context/SidebarContext";
 import { buildCategoryHref } from "@/lib/routing";
 import { cn } from "@/lib/utils"; // optional; replace with a simple join if you don't have this
+import Image from "next/image";
 
 /**
  * Expected SidebarContext API (adjust names if yours differ):
@@ -139,17 +140,26 @@ export default function ThreeLevelSidebar() {
     <Sheet open={isOpen} onOpenChange={(open) => !open && closeSidebar()}>
       <SheetContent
         side="left"
-        className="p-0 w-auto max-w-none bg-primary text-primary-foreground border-none [&>button[data-sheet-close]]:hidden"
+        className="p-0 pt-5 w-auto max-w-none bg-[#6A4EF5] text-primary-foreground border-none [&>button]:hidden"
       >
-        {/* HEADER (sticky) */}
-        <div className="sticky top-0 z-10 bg-primary border-b border-primary-foreground/20">
-          <div className="flex items-center justify-between p-4">
+        {/* HEADER */}
+        <div className="sticky top-0 z-10">
+          <div className="flex items-center justify-between gap-0">
             <SheetHeader className="space-y-0">
-              <SheetTitle className="text-lg">Všetky kategórie</SheetTitle>
+              <SheetTitle className="text-lg">
+                <Image
+                  src="/logos/logo.svg"
+                  alt="logo"
+                  priority
+                  width={20}
+                  height={12}
+                  className="h-auto w-60"
+                />
+              </SheetTitle>
             </SheetHeader>
             <SheetClose
               aria-label="Zavrieť"
-              className="rounded-md p-2 hover:bg-primary-foreground/10"
+              className="p-0.5 mr-4 text-black border-2 !border-black cursor-pointer"
             >
               <X className="h-5 w-5" />
             </SheetClose>
@@ -157,28 +167,14 @@ export default function ThreeLevelSidebar() {
         </div>
 
         {/* 3 COLUMNS */}
-        <div className="flex h-[calc(100vh-57px)]">
+        <div className="flex h-[calc(100vh-57px)] relative">
           {/* PARENT */}
           <div
             ref={parentRef}
-            className="w-80 flex-shrink-0 border-r border-primary-foreground/20 overflow-y-auto"
+            className="w-80 flex-shrink-0 overflow-y-auto"
             aria-label="Rodičovské kategórie"
           >
             <div className="p-4 space-y-1">
-              {/* Najpredávanejšie */}
-              <button
-                className={cn(
-                  "w-full text-left px-4 py-3 rounded-lg transition-colors flex items-center justify-between group",
-                  "hover:bg-primary-foreground/10"
-                )}
-              >
-                <span className="flex items-center gap-3">
-                  <Star className="h-4 w-4" />
-                  Najpredávanejšie
-                </span>
-                <span className="badge-new">Novinka</span>
-              </button>
-
               {categoryTree.map((p) => {
                 const isActive = activeParent === p.id;
                 return (
@@ -201,7 +197,7 @@ export default function ThreeLevelSidebar() {
                   >
                     <span>{p.title}</span>
                     {p.children?.length ? (
-                      <ChevronRight className="h-4 w-4 opacity-50 group-hover:opacity-100 transition-opacity" />
+                      <ChevronRight className="h-6 w-6 opacity-50 group-hover:opacity-100 transition-opacity" />
                     ) : null}
                   </button>
                 );
@@ -213,13 +209,15 @@ export default function ThreeLevelSidebar() {
           {!!parent?.children?.length && (
             <div
               ref={childRef}
-              className="w-72 flex-shrink-0 border-r border-primary-foreground/20 overflow-y-auto bg-white text-black"
+              className="w-80 h-[100vh] flex-shrink-0 overflow-y-auto bg-white text-black border-r-1 border-r-gray-600 absolute -top-16.5 left-[20rem]"
               aria-label={`Podkategórie: ${parent.title}`}
             >
-              <div className="sticky top-0 z-10 bg-primary text-primary-foreground p-4 border-b border-primary-foreground/20">
-                <h3 className="font-semibold">{parent.title}</h3>
+              <div className="sticky top-0 z-10 px-12 pt-8 pb-3">
+                <h3 className="font-semibold text-md text-[#6A4EF5]">
+                  {parent.title}
+                </h3>
               </div>
-              <div className="p-4 space-y-1">
+              <div className="px-8 py-4 space-y-2.5">
                 {parent.children.map((c) => {
                   const isActive = activeChild === c.id;
                   const hasSub = !!c.children?.length;
@@ -243,7 +241,20 @@ export default function ThreeLevelSidebar() {
                         }
                       }}
                     >
-                      <span className="text-sm">{c.title}</span>
+                      {/* <span className="text-sm">{c.title}</span> */}
+                      <span className="text-sm inline-flex items-center gap-3">
+                        {/* icon (fallback to default if missing) */}
+                        <span className="inline-flex items-center justify-center">
+                          <Image
+                            src={c.icon || "/icons/categories/default.svg"}
+                            alt=""
+                            width={16}
+                            height={16}
+                            className="h-auto w-5 object-contain"
+                          />
+                        </span>
+                        {c.title}
+                      </span>
                       {hasSub ? (
                         <ChevronRight className="h-4 w-4 opacity-50 group-hover:opacity-100 transition-opacity" />
                       ) : null}
@@ -251,25 +262,15 @@ export default function ThreeLevelSidebar() {
                   );
                 })}
               </div>
-              {/* “Najpredávanejšie” / chips */}
-              <div className="p-4 pt-0">
-                <span className="text-xs uppercase text-neutral-500">
-                  Najpredávanejšie
-                </span>
-                <div className="mt-2 grid gap-2">
-                  <span className="inline-flex items-center gap-2 text-sm">
-                    Najnovšie{" "}
-                    <span className="px-2 py-0.5 text-xs rounded badge-new">
-                      Novinka
-                    </span>
-                  </span>
-                  <span className="inline-flex items-center gap-2 text-sm">
-                    Zľavy{" "}
-                    <span className="px-2 py-0.5 text-xs rounded badge-sale text-white">
-                      Výpredaj
-                    </span>
-                  </span>
-                </div>
+              {/* Nav Bottom Image */}
+              <div className="px-8 pt-0">
+                <Image
+                  src="/images/banners/child-nav-image.jpg"
+                  alt="Second Nav Banner"
+                  width={1200}
+                  height={600}
+                  priority
+                />
               </div>
             </div>
           )}
@@ -278,13 +279,15 @@ export default function ThreeLevelSidebar() {
           {!!child?.children?.length && (
             <div
               ref={subRef}
-              className="w-64 flex-shrink-0 overflow-y-auto bg-white text-black"
+              className="w-80 h-[100vh] flex-shrink-0 overflow-y-auto bg-white text-black absolute -top-16.5 left-[40rem]"
               aria-label={`Subkategórie: ${child.title}`}
             >
-              <div className="sticky top-0 z-10 bg-primary text-primary-foreground p-4 border-b border-primary-foreground/20">
-                <h3 className="font-semibold text-sm">{child.title}</h3>
+              <div className="sticky top-0 z-10 px-12 pt-8 pb-3">
+                <h3 className="font-semibold text-md text-[#6A4EF5]">
+                  {child.title}
+                </h3>
               </div>
-              <div className="p-4 space-y-1">
+              <div className="px-8 py-4 space-y-2.5">
                 {child.children.map((s) => (
                   <Link
                     key={s.id}

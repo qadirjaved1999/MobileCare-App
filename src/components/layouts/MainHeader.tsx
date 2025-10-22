@@ -3,8 +3,11 @@ import Link from "next/link";
 import { useCart } from "@/context/CartContext";
 import Image from "next/image";
 import { Button } from "../ui/button";
+import { useEffect, useState } from "react";
 export default function MainHeader() {
   const { openCart, items } = useCart();
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
   const cartCount = items.reduce((sum, i) => sum + i.quantity, 0);
 
   return (
@@ -125,7 +128,7 @@ export default function MainHeader() {
               height={20}
               className="h-6 w-6"
             />
-            {cartCount > 0 && (
+            {mounted && cartCount > 0 &&(
               <span className="absolute -top-1 -right-1 min-w-[18px] h-[18px] px-1 rounded-full bg-primary text-white text-[10px] leading-[18px] text-center">
                 {cartCount}
               </span>

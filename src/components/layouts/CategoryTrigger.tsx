@@ -17,7 +17,7 @@ export default function CategoryTrigger({ children }: { children: ReactNode }) {
     <button
       type="button"
       // `contents` avoids adding extra box around your custom child UI
-      className="contents"
+      className="contents cursor-pointer"
       onClick={() => {
         setCategoryMode(true); // ensure the sheet shows categories
         setOpen(true);         // open the sheet

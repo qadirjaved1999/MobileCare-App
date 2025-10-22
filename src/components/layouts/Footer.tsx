@@ -2,64 +2,73 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import {
-  Search,
-  Facebook,
-  Instagram,
-  Youtube,
-  MessageCircle,
-  Music2,
-} from "lucide-react";
 import SearchBar from "../custom-ui/SearchBar";
 
-/**
- * Footer – matches the provided design:
- *  - Left: big logo, headline, paragraph, contact block, socials
- *  - Right (top): purple newsletter card with input + tiny search button + submit button
- *  - Right (bottom): 4 link columns
- *  - Bottom bar: countries (left, faint) + payment icons (right)
- */
 export default function Footer() {
-  const columns: { title: string; links: { label: string; href: string }[] }[] =
-    [
-      {
-        title: "Customer service",
-        links: [
-          { label: "Kontaktujte nás", href: "/kontakt" },
-          { label: "FAQs", href: "/faq" },
-          { label: "Vrátenie zásielky", href: "/vratenie" },
-          { label: "Doručenie", href: "/doručenie" },
-          { label: "Sledovanie zásielky", href: "/sledovanie" },
-          { label: "Platby a cenotvorba", href: "/platby" },
-        ],
-      },
-      {
-        title: "Iné",
-        links: [
-          { label: "Iné iné a niečo iné", href: "#" },
-          { label: "Iné iné a niečo iné", href: "#" },
-          { label: "Iné iné iné", href: "#" },
-          { label: "Iné iné a iné", href: "#" },
-        ],
-      },
-      {
-        title: "Mobilecare",
-        links: [
-          { label: "O nás", href: "/o-nas" },
-          { label: "Blog", href: "/blog" },
-          { label: "Kariéra", href: "/kariera" },
-        ],
-      },
-      {
-        title: "Členstvo, zľavy a akcie",
-        links: [
-          { label: "Odporuč nás a dostaň zľavu 10%", href: "#" },
-          { label: "Vernostný program", href: "#" },
-        ],
-      },
-    ];
+  // inside Footer component
+const sections = [
+  {
+    title: "Customer service",
+    links: [
+      { id: "contact", label: "Kontaktujte nás", href: "/kontakt" },
+      { id: "faqs", label: "FAQs", href: "/faqs" },
+      { id: "returns", label: "Vrátenie zásielky", href: "/vratenie" },
+      { id: "delivery", label: "Doručenie", href: "/doprava" },
+      { id: "tracking", label: "Sledovanie zásielky", href: "/sledovanie" },
+      { id: "pricing", label: "Platby a cenotvorba", href: "/platby" },
+    ],
+  },
+  {
+    title: "Iné",
+    links: [
+      { id: "other-1", label: "Iné iné a niečo iné", href: "/ine-1" },
+      { id: "other-2", label: "Iné iné a niečo iné", href: "/ine-2" }, // same label, different id
+      { id: "other-3", label: "Iné iné iné", href: "/ine-3" },
+      { id: "other-4", label: "Iné iné a iné", href: "/ine-4" },
+    ],
+  },
+  // ...
+] as const;
+
+  // const columns: { title: string; links: { label: string; href: string }[] }[] =
+  //   [
+  //     {
+  //       title: "Customer service",
+  //       links: [
+  //         { label: "Kontaktujte nás", href: "/kontakt" },
+  //         { label: "FAQs", href: "/faq" },
+  //         { label: "Vrátenie zásielky", href: "/vratenie" },
+  //         { label: "Doručenie", href: "/doručenie" },
+  //         { label: "Sledovanie zásielky", href: "/sledovanie" },
+  //         { label: "Platby a cenotvorba", href: "/platby" },
+  //       ],
+  //     },
+  //     {
+  //       title: "Iné",
+  //       links: [
+  //         { label: "Iné iné a niečo iné", href: "#" },
+  //         { label: "Iné iné a niečo iné", href: "#" },
+  //         { label: "Iné iné iné", href: "#" },
+  //         { label: "Iné iné a iné", href: "#" },
+  //       ],
+  //     },
+  //     {
+  //       title: "Mobilecare",
+  //       links: [
+  //         { label: "O nás", href: "/o-nas" },
+  //         { label: "Blog", href: "/blog" },
+  //         { label: "Kariéra", href: "/kariera" },
+  //       ],
+  //     },
+  //     {
+  //       title: "Členstvo, zľavy a akcie",
+  //       links: [
+  //         { label: "Odporuč nás a dostaň zľavu 10%", href: "#" },
+  //         { label: "Vernostný program", href: "#" },
+  //       ],
+  //     },
+  //   ];
 
   const paymentIcons = [
     { src: "/icons/visa.svg", alt: "Visa" },
@@ -190,14 +199,14 @@ export default function Footer() {
         </div>
         <div className="second-column"></div>
         <div className="grid grid-cols-4 pb-10 ml-4.5">
-          {columns.map((col) => (
-            <div key={col.title}>
-              <h5 className="font-semibold mb-3">{col.title}</h5>
+          {sections.map((section) => (
+            <div key={section.title}>
+              <h5 className="font-semibold mb-3">{section.title}</h5>
               <ul className="space-y-5 text-sm text-white/80">
-                {col.links.map((l) => (
-                  <li key={l.label}>
-                    <Link href={l.href} className="hover:underline">
-                      {l.label}
+                {section.links.map((link) => (
+                  <li key={link.id}>
+                    <Link href={link.href} className="hover:underline">
+                      {link.label}
                     </Link>
                   </li>
                 ))}
