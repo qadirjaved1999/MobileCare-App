@@ -1,19 +1,22 @@
 "use client";
 
 import Link from "next/link";
-import { Menu } from "lucide-react";
 import CategoryTrigger from "./CategoryTrigger";
 import Image from "next/image";
 import SearchBar from "../custom-ui/SearchBar";
+import { buildCategoryHref } from "@/lib/routing";
 
-const nav = [
-  "iPhone",
-  "iPad",
-  "MacBook",
-  "Apple Airpods",
-  "Smarthome",
-  "Príslušenstvo",
+// Map display labels to data slugs
+const NAV = [
+  { label: "iPhone", slug: "iphone" },
+  { label: "iPad", slug: "ipad" },
+  { label: "MacBook", slug: "macbook" },
+  { label: "Apple Airpods", slug: "apple-airpods" },
+  { label: "Smart Speaker", slug: "smartspeaker" },
+  { label: "Príslušenstvo", slug: "prislusenstvo" },
 ];
+
+console.log("href check:", buildCategoryHref("iphone"));
 
 export default function MainNav() {
   return (
@@ -36,20 +39,16 @@ export default function MainNav() {
 
         {/* section links */}
         <div className="flex items-center gap-10 overflow-x-auto lg:mr-28">
-          {nav.map((label) => (
-            <Link
-              key={label}
-              href={`/category/${label.toLowerCase().replaceAll(" ", "-")}`}
-              className="whitespace-nowrap"
-            >
-              {label}
+          {NAV.map((item) => (
+            <Link key={item.slug} href={buildCategoryHref(item.slug)}>
+              {item.label}
             </Link>
           ))}
         </div>
 
         {/* mobile search (optional) */}
         <div className="">
-           <SearchBar className="hidden md:block w-[290px]" />
+          <SearchBar className="hidden md:block w-[290px]" />
         </div>
       </div>
     </nav>

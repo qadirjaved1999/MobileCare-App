@@ -1,4 +1,5 @@
 import type { Product } from "@/lib/types";
+
 export const products: Product[] = [
   {
     id: "1",
@@ -11,6 +12,8 @@ export const products: Product[] = [
     brand: "Apple",
     badges: ["novinka"],
     inStock: true,
+    // 👇 used by category routing
+    categorySlugs: ["iphone", "iphone-15", "iphone-15-pro-max"],
     variants: [
       { id: "v1", name: "Farba", value: "Titan modrá", color: "#4A5D7C" },
       { id: "v2", name: "Farba", value: "Titan čierna", color: "#1A1A1A" },
@@ -27,6 +30,7 @@ export const products: Product[] = [
     brand: "Apple",
     badges: ["novinka"],
     inStock: true,
+    categorySlugs: ["iphone", "iphone-15", "iphone-15-pro"],
     variants: [
       { id: "v1", name: "Farba", value: "Titan modrá", color: "#4A5D7C" },
       { id: "v2", name: "Farba", value: "Titan čierna", color: "#1A1A1A" },
@@ -41,8 +45,9 @@ export const products: Product[] = [
     image: "/placeholder.svg",
     category: "Smartfóny",
     brand: "Apple",
-    badges: ["vypredaj"], 
+    badges: ["vypredaj"],
     inStock: true,
+    categorySlugs: ["iphone", "iphone-14", "iphone-14-pro"],
   },
   {
     id: "4",
@@ -54,6 +59,7 @@ export const products: Product[] = [
     brand: "Apple",
     badges: ["novinka"],
     inStock: true,
+    categorySlugs: ["macbook", "macbook-air", "macbook-air-15"],
   },
   {
     id: "5",
@@ -64,6 +70,7 @@ export const products: Product[] = [
     category: "Audio",
     brand: "Apple",
     inStock: true,
+    categorySlugs: ["apple-airpods", "airpods-pro", "airpods-pro-2"],
   },
   {
     id: "6",
@@ -75,6 +82,7 @@ export const products: Product[] = [
     brand: "Apple",
     badges: ["novinka"],
     inStock: true,
+    categorySlugs: ["ipad", "ipad-pro", "ipad-pro-12"],
   },
   {
     id: "7",
@@ -86,6 +94,7 @@ export const products: Product[] = [
     brand: "Apple",
     badges: ["novinka"],
     inStock: true,
+    categorySlugs: ["apple-watch", "apple-watch-series", "watch-series-9"],
   },
   {
     id: "8",
@@ -98,5 +107,6 @@ export const products: Product[] = [
     brand: "Apple",
     badges: ["vypredaj"],
     inStock: true,
+    categorySlugs: ["iphone", "iphone-13", "iphone-13"],
   },
 ];
