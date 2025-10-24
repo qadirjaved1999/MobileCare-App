@@ -1,9 +1,8 @@
 "use client";
-
 import Link from "next/link";
-import CategoryTrigger from "./CategoryTrigger";
 import Image from "next/image";
 import SearchBar from "../custom-ui/SearchBar";
+import CategoryTrigger from "./CategoryTrigger";
 import { buildCategoryHref } from "@/lib/routing";
 
 // __________Navigation items__________

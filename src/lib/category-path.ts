@@ -1,6 +1,4 @@
-// src/lib/category-path.ts
 import type { Category } from "@/lib/types";
-
 // __________Helpers & constants__________
 const CONTAINER_SLUGS = new Set(["všetky-kategórie", "najpredávanejšie"]);
 const norm = (s: string) => s.toLowerCase();

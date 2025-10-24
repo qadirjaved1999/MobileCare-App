@@ -1,17 +1,14 @@
 "use client";
-
 import Image from "next/image";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { useCart } from "@/context/CartContext";
 import { cn } from "@/lib/utils";
 import { formatPrice } from "@/lib/price";
 import type { Product } from "@/lib/types";
-
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { useCart } from "@/context/CartContext";
 interface ProductCardProps {
   product: Product;
 }
-
 // __________Product Card Component__________
 export default function ProductCard({ product }: ProductCardProps) {
   const { addItem } = useCart();

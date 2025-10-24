@@ -1,6 +1,5 @@
-// src/app/not-found.tsx
-import Image from "next/image";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function NotFound() {
   return (
@@ -76,7 +75,7 @@ export default function NotFound() {
           </Link>
         </div>
 
-        {/* Right — Image */}
+        {/* Right Image */}
         <Image
           src="/images/banners/not-found.jpg"
           alt="404 - Not Found"

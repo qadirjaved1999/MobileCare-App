@@ -1,5 +1,4 @@
 "use client";
-
 export default function TopContactBar() {
   return (
     <div className="bg-black text-gray-400 text-[13px] px-10">
