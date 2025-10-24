@@ -10,15 +10,67 @@ export const categoryTree: Category[] = [
     slug: "všetky-kategórie",
     children: [
       {
-        id: "iphone-15",
-        title: "iPhone 15",
-        slug: "iphone-15",
-        icon: "/icons/categories/iphone/iphone12.jpg",
+        id: "iphone",
+        title: "iPhone",
+        slug: "iphone",
+        icon: "/icons/categories/iphone/iphone.jpg",
         children: [
-          { id: "iphone-15-pro-max", title: "iPhone 15 Pro Max", slug: "iphone-15-pro-max", children: [] },
-          { id: "iphone-15-pro", title: "iPhone 15 Pro", slug: "iphone-15-pro", children: [] },
-          { id: "iphone-15-plus", title: "iPhone 15 Plus", slug: "iphone-15-plus", children: [] },
-          { id: "iphone-15", title: "iPhone 15", slug: "iphone-15", children: [] },
+          {
+            id: "iphone-11",
+            title: "iPhone 11",
+            slug: "iphone-11",
+            icon: "/icons/categories/iphone/iphone11.jpg",
+            children: [
+              { id: "iphone-11-base", title: "iPhone 11", slug: "iphone-11", children: [] },
+              { id: "iphone-11-pro", title: "iPhone 11 Pro", slug: "iphone-11-pro", children: [] },
+              { id: "iphone-11-pro-max", title: "iPhone 11 Pro Max", slug: "iphone-11-pro-max", children: [] },
+            ],
+          },
+          {
+            id: "iphone-12",
+            title: "iPhone 12",
+            slug: "iphone-12",
+            icon: "/icons/categories/iphone/iphone12.jpg",
+            children: [
+              { id: "iphone-12-base", title: "iPhone 12", slug: "iphone-12", children: [] },
+              { id: "iphone-12-pro", title: "iPhone 12 Pro", slug: "iphone-12-pro", children: [] },
+              { id: "iphone-12-pro-max", title: "iPhone 12 Pro Max", slug: "iphone-12-pro-max", children: [] },
+            ],
+          },
+          {
+            id: "iphone-13",
+            title: "iPhone 13",
+            slug: "iphone-13",
+            icon: "/icons/categories/iphone/iphone13.jpg",
+            children: [
+              { id: "iphone-13-base", title: "iPhone 13", slug: "iphone-13", children: [] },
+              { id: "iphone-13-pro", title: "iPhone 13 Pro", slug: "iphone-13-pro", children: [] },
+              { id: "iphone-13-pro-max", title: "iPhone 13 Pro Max", slug: "iphone-13-pro-max", children: [] },
+            ],
+          },
+          {
+            id: "iphone-14",
+            title: "iPhone 14",
+            slug: "iphone-14",
+            icon: "/icons/categories/iphone/iphone14.jpg",
+            children: [
+              { id: "iphone-14-base", title: "iPhone 14", slug: "iphone-14", children: [] },
+              { id: "iphone-14-pro", title: "iPhone 14 Pro", slug: "iphone-14-pro", children: [] },
+              { id: "iphone-14-pro-max", title: "iPhone 14 Pro Max", slug: "iphone-14-pro-max", children: [] },
+            ],
+          },
+          {
+            id: "iphone-15",
+            title: "iPhone 15",
+            slug: "iphone-15",
+            icon: "/icons/categories/iphone/iphone15.jpg",
+            children: [
+              { id: "iphone-15-base", title: "iPhone 15", slug: "iphone-15", children: [] },
+              { id: "iphone-15-plus", title: "iPhone 15 Plus", slug: "iphone-15-plus", children: [] },
+              { id: "iphone-15-pro", title: "iPhone 15 Pro", slug: "iphone-15-pro", children: [] },
+              { id: "iphone-15-pro-max", title: "iPhone 15 Pro Max", slug: "iphone-15-pro-max", children: [] },
+            ],
+          },
         ],
       },
       {
@@ -56,15 +108,35 @@ export const categoryTree: Category[] = [
         ],
       },
       {
-        id: "smartwatches-curated",
-        title: "Smart Watches",
-        slug: "smartwatches",
-        icon: "/icons/categories/watches.png",
+        id: "apple-watch",
+        title: "Apple Watch",
+        slug: "apple-watch",
+        icon: "/images/categories/watches/watch1.jpg",
         children: [
-          { id: "apple-watch-series-10", title: "Apple Watch Series 10", slug: "apple-watch-series-10", children: [] },
-          { id: "apple-watch-ultra-2", title: "Apple Watch Ultra 2", slug: "apple-watch-ultra-2", children: [] },
-          { id: "samsung-galaxy-watch-6", title: "Samsung Galaxy Watch 6", slug: "samsung-galaxy-watch-6", children: [] },
-          { id: "google-pixel-watch-3", title: "Google Pixel Watch 3", slug: "google-pixel-watch-3", children: [] },
+          {
+            id: "apple-watch-series-9",
+            title: "Apple Watch Series 9",
+            slug: "apple-watch-series-9",
+            icon: "/images/categories/watches/watch2.jpg",
+          },
+          {
+            id: "apple-watch-series-8",
+            title: "Apple Watch Series 8",
+            slug: "apple-watch-series-8",
+            icon: "/images/categories/watches/watch3.jpg",
+          },
+          {
+            id: "apple-watch-ultra-2",
+            title: "Apple Watch Ultra 2",
+            slug: "apple-watch-ultra-2",
+            icon: "/images/categories/watches/watch4.jpg",
+          },
+          {
+            id: "apple-watch-se-2",
+            title: "Apple Watch SE (2. generácia)",
+            slug: "apple-watch-se-2",
+            icon: "/images/categories/watches/watch6.jpg",
+          },
         ],
       },
       {
@@ -83,7 +155,7 @@ export const categoryTree: Category[] = [
         ],
       },
       {
-        id: "herna-zona",
+        id: "herna-zona-curated",
         title: "Herná zóna",
         slug: "herna-zona",
         icon: "/icons/categories/herna.svg",

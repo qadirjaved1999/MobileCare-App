@@ -1,5 +1,5 @@
 
-import { notFound } from "next/navigation";
+import NotFound from "@/app/not-found";
 import { categoryTree } from "@/data/categories";
 import { products } from "@/data/products";
 import { resolveCategoryBySegments, productMatchesPath } from "@/lib/routing";
@@ -12,7 +12,8 @@ export default function CategoryPage({ params }: Props) {
 
   // Resolve for page title & 404 if bad path
   const node = resolveCategoryBySegments(categoryTree, segments);
-  if (!node) return notFound();
+  if (!node) return <NotFound />;
+
 
   // Always aggregate products for current path (parent or leaf)
   const items = products.filter(p => productMatchesPath(p.categorySlugs, segments));
