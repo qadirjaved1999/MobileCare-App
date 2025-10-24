@@ -12,10 +12,11 @@ interface ProductCardProps {
   product: Product;
 }
 
+// __________Product Card Component__________
 export default function ProductCard({ product }: ProductCardProps) {
   const { addItem } = useCart();
 
-  //  Adds product to cart with default quantity = 1
+  // __________Add product to cart (qty 1)__________
   const handleAddToCart = () => {
     addItem({
       productId: product.id,
@@ -25,11 +26,12 @@ export default function ProductCard({ product }: ProductCardProps) {
   };
 
   return (
+    // __________Wrapper__________
     <article
       className={cn("relative group bg-card overflow-hidden border rounded-lg")}
       aria-labelledby={`product-${product.id}`}
     >
-      {/* Badges “Novinka” or “Výpredaj” */}
+      {/* __________Badges (Novinka / Výpredaj)__________ */}
       {product.badges && product.badges.length > 0 && (
         <div className="absolute top-2 left-2 z-10 flex gap-1">
           {product.badges.map((badge) => (
@@ -37,9 +39,9 @@ export default function ProductCard({ product }: ProductCardProps) {
               key={badge}
               className={cn(
                 badge === "novinka" && "badge-new",
-                badge === "vypredaj" && "badge-sale",
+                badge === "vypredaj" && "badge-sale"
               )}
-              style={{ borderRadius: 0 }} 
+              style={{ borderRadius: 0 }}
             >
               {badge === "novinka" ? "Novinka" : "Výpredaj"}
             </Badge>
@@ -47,7 +49,7 @@ export default function ProductCard({ product }: ProductCardProps) {
         </div>
       )}
 
-      {/* Wishlist */}
+      {/* __________Wishlist button__________ */}
       <button
         aria-label="Pridať do zoznamu želaní"
         className="absolute top-2 right-2 z-50 p-2 opacity-100 cursor-pointer"
@@ -60,7 +62,8 @@ export default function ProductCard({ product }: ProductCardProps) {
           className="object-contain"
         />
       </button>
-      {/* Product image */}
+
+      {/* __________Product image__________ */}
       <div className="aspect-square relative">
         <Image
           src={product.image}
@@ -70,17 +73,14 @@ export default function ProductCard({ product }: ProductCardProps) {
         />
       </div>
 
-      {/* Product info */}
+      {/* __________Product info__________ */}
       <div className="p-4">
-        <h3
-          id={`product-${product.id}`}
-          className="font-semibold mb-2 line-clamp-2"
-        >
+        <h3 id={`product-${product.id}`} className="font-semibold mb-2 line-clamp-2">
           {product.name}
         </h3>
         <p className="text-xs text-muted-foreground mb-3">{product.category}</p>
 
-        {/* Variants color dots */}
+        {/* __________Variants (color dots)__________ */}
         {product.variants && product.variants.length > 0 ? (
           <div className="flex gap-1 mb-3">
             {product.variants.slice(0, 4).map((variant) => (
@@ -101,11 +101,9 @@ export default function ProductCard({ product }: ProductCardProps) {
           <p className="text-sm text-muted-foreground mb-3">Single variant</p>
         )}
 
-        {/* Price */}
+        {/* __________Price section__________ */}
         <div className="flex items-baseline gap-2 mb-3">
-          <span className="text-lg font-bold">
-            {formatPrice(product.price)}
-          </span>
+          <span className="text-lg font-bold">{formatPrice(product.price)}</span>
           {product.originalPrice && (
             <span className="text-sm text-muted-foreground line-through">
               {formatPrice(product.originalPrice)}
@@ -113,12 +111,8 @@ export default function ProductCard({ product }: ProductCardProps) {
           )}
         </div>
 
-        {/* Add to Cart button */}
-        <Button
-          className="w-full"
-          onClick={handleAddToCart}
-          disabled={!product.inStock}
-        >
+        {/* __________Add to Cart button__________ */}
+        <Button className="w-full" onClick={handleAddToCart} disabled={!product.inStock}>
           {product.inStock ? "Pridať do košíka" : "Vypredané"}
         </Button>
       </div>

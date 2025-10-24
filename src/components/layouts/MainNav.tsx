@@ -6,7 +6,7 @@ import Image from "next/image";
 import SearchBar from "../custom-ui/SearchBar";
 import { buildCategoryHref } from "@/lib/routing";
 
-// Map display labels to data slugs
+// __________Navigation items__________
 const NAV = [
   { label: "iPhone", slug: "iphone" },
   { label: "iPad", slug: "ipad" },
@@ -18,17 +18,20 @@ const NAV = [
 
 console.log("href check:", buildCategoryHref("iphone"));
 
+// __________Main Navigation Bar__________
 export default function MainNav() {
   return (
     <nav className="hidden md:block bg-ink text-white px-8 pb-4">
       <div className="container-xl h-12 flex items-center justify-between gap-4">
+        
+        {/* __________All Categories Button__________ */}
         <div className="mr-2">
           <CategoryTrigger>
             <div className="inline-flex items-center gap-2 bg-white text-black font-bold px-3 py-2">
               <span>Všetky kategórie</span>
               <Image
                 src="/icons/menu.svg"
-                alt="Výpredaj icon"
+                alt="Menu icon"
                 width={20}
                 height={20}
                 className="h-7 w-7"
@@ -37,7 +40,7 @@ export default function MainNav() {
           </CategoryTrigger>
         </div>
 
-        {/* section links */}
+        {/* __________Category Links (desktop)__________ */}
         <div className="hidden lg:flex items-center gap-10 xl:mr-28">
           {NAV.map((item) => (
             <Link key={item.slug} href={buildCategoryHref(item.slug)}>
@@ -46,8 +49,8 @@ export default function MainNav() {
           ))}
         </div>
 
-        {/* mobile search (optional) */}
-        <div className="">
+        {/* __________Search Input (xl+)__________ */}
+        <div>
           <SearchBar className="hidden xl:block w-[290px]" />
         </div>
       </div>

@@ -1,12 +1,12 @@
 "use client";
-
-import { useEffect, useRef } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { X } from "lucide-react";
-import { buildCategoryHref } from "@/lib/routing";
+import { useEffect, useRef } from "react";
+import { usePathname } from "next/navigation";
 import SearchBar from "../custom-ui/SearchBar";
+import { buildCategoryHref } from "@/lib/routing";
 
+// __________Navigation items__________
 const NAV = [
   { label: "iPhone", slug: "iphone" },
   { label: "iPad", slug: "ipad" },
@@ -16,22 +16,24 @@ const NAV = [
   { label: "Príslušenstvo", slug: "prislusenstvo" },
 ];
 
+// __________Props__________
 export interface MobileNavProps {
   open: boolean;
   onClose: () => void;
 }
 
+// __________Mobile Navigation Drawer__________
 export default function MobileNav({ open, onClose }: MobileNavProps) {
   const panelRef = useRef<HTMLDivElement | null>(null);
   const pathname = usePathname();
 
-  // close drawer on route change
+  // __________Close on route change__________
   useEffect(() => {
     if (open) onClose();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
 
-  // lock body scroll while open
+  // __________Lock body scroll while open__________
   useEffect(() => {
     if (!open) return;
     const prev = document.body.style.overflow;
@@ -41,7 +43,7 @@ export default function MobileNav({ open, onClose }: MobileNavProps) {
     };
   }, [open]);
 
-  // ESC to close
+  // __________ESC key to close__________
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
@@ -52,7 +54,7 @@ export default function MobileNav({ open, onClose }: MobileNavProps) {
 
   return (
     <>
-      {/* Overlay */}
+      {/* __________Overlay__________ */}
       <div
         aria-hidden={!open}
         onClick={onClose}
@@ -61,7 +63,7 @@ export default function MobileNav({ open, onClose }: MobileNavProps) {
         }`}
       />
 
-      {/* Drawer panel */}
+      {/* __________Drawer panel__________ */}
       <aside
         ref={panelRef}
         role="dialog"
@@ -71,7 +73,7 @@ export default function MobileNav({ open, onClose }: MobileNavProps) {
                     transition-transform duration-300 ease-out
                     ${open ? "translate-x-0" : "-translate-x-full"}`}
       >
-        {/* Header */}
+        {/* __________Header__________ */}
         <div className="flex items-center justify-between px-4 py-3 border-b">
           <span className="font-semibold text-lg">Menu</span>
           <button
@@ -83,12 +85,12 @@ export default function MobileNav({ open, onClose }: MobileNavProps) {
           </button>
         </div>
 
-        {/* Search */}
+        {/* __________Search bar__________ */}
         <div className="p-4 border-b">
           <SearchBar className="w-full" />
         </div>
 
-        {/* Sections */}
+        {/* __________Navigation links__________ */}
         <nav className="py-2">
           <ul className="px-2">
             {NAV.map((item) => (
@@ -103,6 +105,7 @@ export default function MobileNav({ open, onClose }: MobileNavProps) {
             ))}
           </ul>
 
+          {/* __________All categories link__________ */}
           <div className="px-2 mt-1">
             <Link
               href="/category/v%C5%A1etky-kateg%C3%B3rie"

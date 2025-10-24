@@ -1,20 +1,17 @@
 "use client";
-
 import React, { createContext, useContext, useState, useCallback } from "react";
 
+// __________Types__________
 export type SidebarContextType = {
-  /** Sheet open/close (two names for compatibility) */
   open: boolean;
   setOpen: (v: boolean) => void;
-  isOpen: boolean;                 // alias of `open`
+  isOpen: boolean;
   openSidebar: () => void;
   closeSidebar: () => void;
 
-  /** Which content the left sheet shows: categories vs filters */
   isCategoryMode: boolean;
   setCategoryMode: (v: boolean) => void;
 
-  /** Active selections for the 3-level menu */
   activeParent: string | null;
   activeChild: string | null;
   activeSubChild: string | null;
@@ -23,23 +20,27 @@ export type SidebarContextType = {
   setActiveSubChild: (id: string | null) => void;
 };
 
+// __________Context__________
 const SidebarContext = createContext<SidebarContextType | undefined>(undefined);
 
+// __________Provider__________
 export function SidebarProvider({ children }: { children: React.ReactNode }) {
-  // drawer open state
+  // Sheet open/close
   const [open, setOpen] = useState(false);
-  // mode: true => categories, false => filters
+
+  // Mode: true = categories, false = filters
   const [isCategoryMode, setCategoryMode] = useState(true);
 
-  // active nodes for columns
+  // Active selections for 3-level nav
   const [activeParent, setActiveParent] = useState<string | null>(null);
   const [activeChild, setActiveChild] = useState<string | null>(null);
   const [activeSubChild, setActiveSubChild] = useState<string | null>(null);
 
+  // Open / close handlers
   const openSidebar = useCallback(() => setOpen(true), []);
   const closeSidebar = useCallback(() => {
     setOpen(false);
-    // optional: reset selections after close anim
+    // Reset selection after close delay
     setTimeout(() => {
       setActiveParent(null);
       setActiveChild(null);
@@ -47,19 +48,15 @@ export function SidebarProvider({ children }: { children: React.ReactNode }) {
     }, 200);
   }, []);
 
+  // Context value
   const value: SidebarContextType = {
-    // open helpers
     open,
     setOpen,
     isOpen: open,
     openSidebar,
     closeSidebar,
-
-    // mode
     isCategoryMode,
     setCategoryMode,
-
-    // selections
     activeParent,
     activeChild,
     activeSubChild,
@@ -71,6 +68,7 @@ export function SidebarProvider({ children }: { children: React.ReactNode }) {
   return <SidebarContext.Provider value={value}>{children}</SidebarContext.Provider>;
 }
 
+// __________Hook__________
 export function useSidebar() {
   const ctx = useContext(SidebarContext);
   if (!ctx) throw new Error("useSidebar must be used within SidebarProvider");

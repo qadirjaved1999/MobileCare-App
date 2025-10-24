@@ -1,50 +1,45 @@
-"use client"; // ✅ required: we use React state/hooks in App Router
-
+"use client";
 import {
-  createContext,
-  useContext,
-  useState,
-  useCallback,
   useMemo,
+  useState,
   useEffect,
+  useContext,
+  useCallback,
+  createContext,
 } from "react";
-import type { CartItem } from "@/lib/types";
 import { toast } from "sonner";
+import type { CartItem } from "@/lib/types";
 
-/* ---------------------------------------------
-   🛒 CartContext
-   Manages the cart drawer + items + voucher + totals.
-   Persists to localStorage (SSR-safe).
-----------------------------------------------*/
+// __________Types__________
 interface CartContextType {
-  isOpen: boolean;                         // drawer open/close
+  isOpen: boolean;
   openCart: () => void;
   closeCart: () => void;
 
-  items: CartItem[];                       // current cart items
-  addItem: (item: CartItem) => void;       // add/merge item
-  removeItem: (productId: string) => void; // remove by product id
+  items: CartItem[];
+  addItem: (item: CartItem) => void;
+  removeItem: (productId: string) => void;
   updateQuantity: (productId: string, quantity: number) => void;
 
-  subtotal: number;                        // derived: sum(product * qty)
-  shipping: number;                        // derived: shipping rule
-  total: number;                           // derived: subtotal + shipping
+  subtotal: number;
+  shipping: number;
+  total: number;
 
-  voucher: string;                         // promo code text
+  voucher: string;
   setVoucher: (code: string) => void;
 
-  savedForLater: CartItem[];               // “save for later” bin
+  savedForLater: CartItem[];
   saveForLater: (productId: string) => void;
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
-// Storage keys (so we don’t typo them later)
+// __________Storage keys__________
 const CART_KEY = "mobilecare-cart";
 const SAVED_KEY = "mobilecare-saved";
 const VOUCHER_KEY = "mobilecare-voucher";
 
-// Simple SSR-safe getters
+// __________Safe localStorage read__________
 function loadJSON<T>(key: string, fallback: T): T {
   if (typeof window === "undefined") return fallback;
   try {
@@ -55,11 +50,12 @@ function loadJSON<T>(key: string, fallback: T): T {
   }
 }
 
+// __________Provider__________
 export function CartProvider({ children }: { children: React.ReactNode }) {
-  // Drawer UI state
+  // UI state
   const [isOpen, setIsOpen] = useState(false);
 
-  // Core state (SSR-safe hydration)
+  // Core state (hydrated from storage)
   const [items, setItems] = useState<CartItem[]>(() => loadJSON(CART_KEY, []));
   const [savedForLater, setSavedForLater] = useState<CartItem[]>(() =>
     loadJSON(SAVED_KEY, [])
@@ -68,7 +64,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     loadJSON(VOUCHER_KEY, "")
   );
 
-  // Persist on change (client only)
+  // __________Persist changes__________
   useEffect(() => {
     if (typeof window !== "undefined") {
       localStorage.setItem(CART_KEY, JSON.stringify(items));
@@ -87,21 +83,17 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     }
   }, [voucher]);
 
-  /* ---------------- Actions ---------------- */
-
+  // __________Actions__________
   const openCart = useCallback(() => setIsOpen(true), []);
   const closeCart = useCallback(() => setIsOpen(false), []);
 
-  // Add item; if same product exists, increase quantity
+  // Add or merge item
   const addItem = useCallback((incoming: CartItem) => {
     setItems((prev) => {
       const idx = prev.findIndex((i) => i.productId === incoming.productId);
       if (idx >= 0) {
         const next = [...prev];
-        next[idx] = {
-          ...next[idx],
-          quantity: next[idx].quantity + incoming.quantity,
-        };
+        next[idx] = { ...next[idx], quantity: next[idx].quantity + incoming.quantity };
         return next;
       }
       return [...prev, incoming];
@@ -115,59 +107,41 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
   const updateQuantity = useCallback(
     (productId: string, quantity: number) => {
-      // quantity <= 0 removes
       if (quantity <= 0) {
         removeItem(productId);
         return;
       }
       setItems((prev) =>
-        prev.map((i) =>
-          i.productId === productId ? { ...i, quantity } : i
-        )
+        prev.map((i) => (i.productId === productId ? { ...i, quantity } : i))
       );
     },
     [removeItem]
   );
 
-  // Move an item to "saved for later"
-  const saveForLater = useCallback(
-    (productId: string) => {
-      setItems((prev) => {
-        const item = prev.find((i) => i.productId === productId);
-        if (!item) return prev;
-        // add to saved, remove from cart
-        setSavedForLater((s) => [...s, item]);
-        toast("Produkt odložený na neskôr");
-        return prev.filter((i) => i.productId !== productId);
-      });
-    },
-    []
-  );
+  // Move item to "saved for later"
+  const saveForLater = useCallback((productId: string) => {
+    setItems((prev) => {
+      const item = prev.find((i) => i.productId === productId);
+      if (!item) return prev;
+      setSavedForLater((s) => [...s, item]);
+      toast("Produkt odložený na neskôr");
+      return prev.filter((i) => i.productId !== productId);
+    });
+  }, []);
 
   const setVoucher = useCallback((code: string) => {
     setVoucherState(code);
   }, []);
 
-  /* --------------- Derived totals --------------- */
-
-  // Subtotal = Σ (price * qty)
+  // __________Derived totals__________
   const subtotal = useMemo(
-    () =>
-      items.reduce(
-        (sum, item) => sum + item.product.price * item.quantity,
-        0
-      ),
+    () => items.reduce((sum, item) => sum + item.product.price * item.quantity, 0),
     [items]
   );
-
-  // Example shipping rule: free over 50€
   const shipping = useMemo(() => (subtotal > 50 ? 0 : 4.99), [subtotal]);
-
-  // For now: total is subtotal + shipping (no voucher math here)
   const total = useMemo(() => subtotal + shipping, [subtotal, shipping]);
 
-  /* --------------- Context value --------------- */
-
+  // __________Context value__________
   const value: CartContextType = {
     isOpen,
     openCart,
@@ -188,10 +162,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 }
 
-/* ---------------------------------------------
-   ⚡ Hook
-   Use inside components to access cart state/actions.
-----------------------------------------------*/
+// __________Hook__________
 export function useCart() {
   const ctx = useContext(CartContext);
   if (!ctx) throw new Error("useCart must be used within CartProvider");

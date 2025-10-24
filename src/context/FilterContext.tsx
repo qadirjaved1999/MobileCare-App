@@ -1,30 +1,26 @@
 "use client";
 import {
-  createContext,
-  useContext,
   useState,
-  useCallback,
   useEffect,
+  useContext,
+  useCallback,
+  createContext,
 } from "react";
-import type { FilterState } from "@/lib/types"; // adjust the import path if needed
+import type { FilterState } from "@/lib/types";
 
-/* ---------------------------------------------
-   🎛 FilterContext
-   Handles filter drawer (open/close) and all filter selections.
-   Persists filters to localStorage between visits.
-----------------------------------------------*/
+// __________Types__________
 interface FilterContextType {
-  isOpen: boolean;                     // filter sheet open/close
-  openFilter: () => void;              // open sheet
-  closeFilter: () => void;             // close sheet
-  filters: FilterState;                // current filter values
+  isOpen: boolean;
+  openFilter: () => void;
+  closeFilter: () => void;
+  filters: FilterState;
   setFilters: (filters: FilterState) => void;
-  resetFilters: () => void;            // reset all filters to defaults
-  resultCount: number;                 // number of matching products
+  resetFilters: () => void;
+  resultCount: number;
   setResultCount: (count: number) => void;
 }
 
-/* Default values for all filters */
+// __________Defaults__________
 const defaultFilters: FilterState = {
   priceMin: 0,
   priceMax: 3000,
@@ -33,17 +29,15 @@ const defaultFilters: FilterState = {
   models: [],
 };
 
-/* Create context */
+// __________Context__________
 const FilterContext = createContext<FilterContextType | undefined>(undefined);
 
-/* ---------------------------------------------
-   📦 Provider
-   Wraps around the app to make filters available globally.
-----------------------------------------------*/
+// __________Provider__________
 export function FilterProvider({ children }: { children: React.ReactNode }) {
+  // UI state (sheet)
   const [isOpen, setIsOpen] = useState(false);
 
-  // ✅ Load filters from localStorage on mount (SSR-safe)
+  // Filters (hydrate from storage)
   const [filters, setFiltersState] = useState<FilterState>(() => {
     if (typeof window !== "undefined") {
       try {
@@ -56,23 +50,22 @@ export function FilterProvider({ children }: { children: React.ReactNode }) {
     return defaultFilters;
   });
 
+  // Result counter (externally updated)
   const [resultCount, setResultCount] = useState(1772);
 
-  // 🧠 Save filters anytime they change (client only)
+  // Persist filters on change
   useEffect(() => {
     if (typeof window !== "undefined") {
       localStorage.setItem("mobilecare-filters", JSON.stringify(filters));
     }
   }, [filters]);
 
-  /* ------- Actions ------- */
+  // __________Actions__________
   const openFilter = useCallback(() => setIsOpen(true), []);
   const closeFilter = useCallback(() => setIsOpen(false), []);
-
   const setFilters = useCallback((newFilters: FilterState) => {
     setFiltersState(newFilters);
   }, []);
-
   const resetFilters = useCallback(() => {
     setFiltersState(defaultFilters);
     setResultCount(1772);
@@ -96,10 +89,7 @@ export function FilterProvider({ children }: { children: React.ReactNode }) {
   );
 }
 
-/* ---------------------------------------------
-   ⚡ Hook
-   Access filter state & actions easily in any component.
-----------------------------------------------*/
+// __________Hook__________
 export function useFilter() {
   const ctx = useContext(FilterContext);
   if (!ctx) throw new Error("useFilter must be used within FilterProvider");

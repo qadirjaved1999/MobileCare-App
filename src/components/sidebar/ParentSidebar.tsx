@@ -1,5 +1,4 @@
 "use client";
-
 import Image from "next/image";
 import * as React from "react";
 import { cn } from "@/lib/utils";
@@ -19,10 +18,10 @@ type PromoItem = {
   badge?: { text: string; className: string };
 };
 
+// __________Parent Sidebar__________
 const ParentSidebar = React.forwardRef<HTMLDivElement, Props>(
   ({ items, activeParentId, onPick }, ref) => {
-    
-    //Best sellers data
+    // __________Best-seller / promo shortcuts__________
     const promoItems: PromoItem[] = [
       {
         id: "new",
@@ -45,13 +44,15 @@ const ParentSidebar = React.forwardRef<HTMLDivElement, Props>(
         },
       },
     ];
+
     return (
+      // __________Wrapper panel__________
       <div
         ref={ref}
         className="w-80 px-4 py-4 flex-shrink-0 overflow-y-auto"
         aria-label="Rodičovské kategórie"
       >
-        {/* Parent Categories */}
+        {/* __________Parent categories list__________ */}
         <div className="space-y-1">
           {items.map((p) => {
             const isActive = activeParentId === p.id;
@@ -75,13 +76,16 @@ const ParentSidebar = React.forwardRef<HTMLDivElement, Props>(
             );
           })}
         </div>
-        {/* Best Seller Categories */}
+
+        {/* __________Promo block (best sellers)__________ */}
         <div className="mt-2 text-white">
           <div className="mt-2 mb-5 mr-3 h-px bg-white/20" />
           <div className="best-seller px-4 flex justify-between mb-3 rounded-lg py-3 hover:bg-white/10 transition-colors">
             <span>Najpredávanejšie</span>
             <ChevronRight className="h-6 w-6 opacity-60" />
           </div>
+
+          {/* __________Promo shortcut items__________ */}
           <ul className="space-y-1">
             {promoItems.map(({ id, label, icon: Icon, badge }) => (
               <li key={id}>
@@ -98,9 +102,7 @@ const ParentSidebar = React.forwardRef<HTMLDivElement, Props>(
                       className="w-6 h-6 object-contain opacity-90"
                     />
                     <span className="text-[15px]">{label}</span>
-                    {badge && (
-                      <span className={badge.className}>{badge.text}</span>
-                    )}
+                    {badge && <span className={badge.className}>{badge.text}</span>}
                   </span>
                   <ChevronRight className="h-6 w-6 opacity-60 mr-1" />
                 </button>
@@ -110,7 +112,7 @@ const ParentSidebar = React.forwardRef<HTMLDivElement, Props>(
           <div className="mt-5 mr-3 h-px bg-white/20" />
         </div>
 
-        {/* Links: Blog and Frequently questions */}
+        {/* __________Helpful links__________ */}
         <div className="px-2 flex flex-col justify-start items-start mt-3 text-sm font-normal">
           <div className="cursor-pointer w-full rounded-lg px-3 py-3 hover:bg-white/10 transition-colors">
             Kontakt
@@ -122,8 +124,10 @@ const ParentSidebar = React.forwardRef<HTMLDivElement, Props>(
             Blog
           </div>
         </div>
+
         <div className="mt-3 mr-3 h-px bg-white/20" />
-        {/* Popular products */}
+
+        {/* __________Popular products link__________ */}
         <div className="popular-product flex gap-3 mt-2 w-full max-w-[17.4rem] cursor-pointer rounded-lg px-3 py-3 hover:bg-white/10 transition-colors">
           <Image
             src="/icons/like.svg"
@@ -134,46 +138,18 @@ const ParentSidebar = React.forwardRef<HTMLDivElement, Props>(
           />
           <span className="text-[15px]">{"Obľúbené produkty"}</span>
         </div>
+
         <div className="mt-2 mr-3 h-px bg-white/20" />
-        {/* Social links */}
+
+        {/* __________Social icons__________ */}
         <div className="flex flex-col gap-6 mt-5 px-4">
           <span>Sledujte nás</span>
           <div className="flex justify-start items-center gap-5">
-            <Image
-              src="/icons/facebook.svg"
-              alt={"Popular Product"}
-              width={18}
-              height={18}
-              className="w-5 h-5 object-contain opacity-90"
-            />
-             <Image
-              src="/icons/instagram.svg"
-              alt={"Popular Product"}
-              width={18}
-              height={18}
-              className="w-5 h-5 object-contain opacity-90"
-            />
-             <Image
-              src="/icons/youtube.svg"
-              alt={"Popular Product"}
-              width={18}
-              height={18}
-              className="w-5 h-5 object-contain opacity-90"
-            />
-             <Image
-              src="/icons/whatsapp.svg"
-              alt={"Popular Product"}
-              width={18}
-              height={18}
-              className="w-5 h-5 object-contain opacity-90"
-            />
-             <Image
-              src="/icons/tiktok.svg"
-              alt={"Popular Product"}
-              width={18}
-              height={18}
-              className="w-5 h-5 object-contain opacity-90"
-            />
+            <Image src="/icons/facebook.svg" alt="Facebook" width={18} height={18} className="w-5 h-5 object-contain opacity-90" />
+            <Image src="/icons/instagram.svg" alt="Instagram" width={18} height={18} className="w-5 h-5 object-contain opacity-90" />
+            <Image src="/icons/youtube.svg" alt="YouTube" width={18} height={18} className="w-5 h-5 object-contain opacity-90" />
+            <Image src="/icons/whatsapp.svg" alt="WhatsApp" width={18} height={18} className="w-5 h-5 object-contain opacity-90" />
+            <Image src="/icons/tiktok.svg" alt="TikTok" width={18} height={18} className="w-5 h-5 object-contain opacity-90" />
           </div>
         </div>
       </div>

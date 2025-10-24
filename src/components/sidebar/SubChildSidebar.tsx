@@ -1,7 +1,6 @@
 "use client";
-
-import * as React from "react";
 import Link from "next/link";
+import * as React from "react";
 import type { Category } from "@/lib/types";
 import { buildCategoryHref } from "@/lib/routing";
 
@@ -11,18 +10,22 @@ type Props = {
   onPick: (slug: string) => void;
 };
 
+// __________Sub-Child Sidebar__________
 const SubChildSidebar = React.forwardRef<HTMLDivElement, Props>(
   ({ parent, child, onPick }, ref) => {
     return (
+      // __________Wrapper panel__________
       <div
         ref={ref}
         className="w-80 h-[100vh] flex-shrink-0 overflow-y-auto bg-white text-black absolute -top-16.5 left-[40rem]"
         aria-label={`Subkategórie: ${child.title}`}
       >
+        {/* __________Header__________ */}
         <div className="sticky top-0 z-10 px-12 pt-8 pb-3">
           <h3 className="font-semibold text-md text-[#6A4EF5]">{child.title}</h3>
         </div>
 
+        {/* __________Subcategory links__________ */}
         <div className="px-8 py-4 space-y-2.5">
           {child.children?.map((s) => (
             <Link

@@ -1,13 +1,15 @@
 "use client";
-
 import Image from "next/image";
-import { SheetClose, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import { X } from "lucide-react";
+import { SheetClose, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 
+// __________Sidebar Header__________
 export default function SidebarHeader() {
   return (
+    // __________Sticky top section__________
     <div className="sticky top-0 z-10 px-4">
       <div className="flex items-center justify-between gap-0">
+        {/* __________Logo__________ */}
         <SheetHeader className="space-y-0">
           <SheetTitle className="text-lg">
             <Image
@@ -21,6 +23,7 @@ export default function SidebarHeader() {
           </SheetTitle>
         </SheetHeader>
 
+        {/* __________Close button__________ */}
         <SheetClose
           data-sheet-close
           aria-label="Zavrieť"

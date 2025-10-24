@@ -1,13 +1,12 @@
 "use client";
-
-import { ReactNode } from "react";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { TooltipProvider } from "@/components/ui/tooltip";
 import { Toaster } from "sonner";
+import { ReactNode } from "react";
+import { CartProvider } from "@/context/CartContext";
+import { FilterProvider } from "@/context/FilterContext";
+import { TooltipProvider } from "@/components/ui/tooltip";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { SidebarProvider } from "@/context/SidebarContext";
-import { FilterProvider } from "@/context/FilterContext";
-import { CartProvider } from "@/context/CartContext";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const queryClient = new QueryClient();
 
