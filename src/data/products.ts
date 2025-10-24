@@ -499,7 +499,7 @@ export const products: Product[] = [
     name: "MackBook",
     slug: "mackbook",
     price: 200,
-    image: "/images/products/accessories/mackbook.jpg",
+    image: "/images/products/accessories/mackbook3.jpg",
     category: "Príslušenstvo",
     brand: "Generic",
     inStock: true,

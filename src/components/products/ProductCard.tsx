@@ -1,4 +1,4 @@
-"use client"; 
+"use client";
 
 import Image from "next/image";
 import { Heart } from "lucide-react";
@@ -27,7 +27,7 @@ export default function ProductCard({ product }: ProductCardProps) {
 
   return (
     <article
-      className={cn("relative  bg-card overflow-hidden border rounded-lg")}
+      className={cn("relative group bg-card overflow-hidden border rounded-lg")}
       aria-labelledby={`product-${product.id}`}
     >
       {/* Badges “Novinka” or “Výpredaj” */}
@@ -37,10 +37,10 @@ export default function ProductCard({ product }: ProductCardProps) {
             <Badge
               key={badge}
               className={cn(
-                "!rounded-none",
                 badge === "novinka" && "badge-new",
-                badge === "vypredaj" && "badge-sale"
+                badge === "vypredaj" && "badge-sale",
               )}
+              style={{ borderRadius: 0 }} 
             >
               {badge === "novinka" ? "Novinka" : "Výpredaj"}
             </Badge>
@@ -48,14 +48,19 @@ export default function ProductCard({ product }: ProductCardProps) {
         </div>
       )}
 
-      {/* Wishlist icon */}
+      {/* Wishlist */}
       <button
         aria-label="Pridať do zoznamu želaní"
-        className="absolute top-2 right-2 z-10 p-2 bg-background/80 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity"
+        className="absolute top-2 right-2 z-50 p-2 bg-black/60 text-white opacity-100 md:opacity-0 md:group-hover:opacity-100 cursor-pointer"
       >
-        <Heart className="h-4 w-4 text-green-500" />
+        <Image
+          src="/icons/wishlist.svg"
+          alt="wishlist"
+          width={20}
+          height={20}
+          className="object-contain"
+        />
       </button>
-
       {/* Product image */}
       <div className="aspect-square relative">
         <Image
@@ -68,13 +73,13 @@ export default function ProductCard({ product }: ProductCardProps) {
 
       {/* Product info */}
       <div className="p-4">
-        <p className="text-xs text-muted-foreground mb-1">{product.category}</p>
         <h3
           id={`product-${product.id}`}
           className="font-semibold mb-2 line-clamp-2"
         >
           {product.name}
         </h3>
+        <p className="text-xs text-muted-foreground mb-3">{product.category}</p>
 
         {/* Variants color dots */}
         {product.variants && product.variants.length > 0 ? (
@@ -84,11 +89,11 @@ export default function ProductCard({ product }: ProductCardProps) {
                 key={variant.id}
                 title={variant.value}
                 style={{ backgroundColor: variant.color }}
-                className="w-5 h-5 rounded-full border border-border hover:border-foreground transition-colors cursor-pointer"
+                className="w-4 h-4 rounded-full border border-border hover:border-foreground transition-colors cursor-pointer"
               />
             ))}
             {product.variants.length > 4 && (
-              <div className="w-5 h-5 rounded-full border border-border flex items-center justify-center text-xs text-muted-foreground">
+              <div className="w-4 h-4 rounded-full border border-border flex items-center justify-center text-xs text-muted-foreground">
                 +{product.variants.length - 4}
               </div>
             )}
