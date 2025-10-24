@@ -1,4 +1,8 @@
 import type { Category } from "@/lib/types";
+
+/* ===========================
+ * Všetky kategórie
+ * =========================== */
 export const categoryTree: Category[] = [
   {
     id: "všetky-kategórie",
@@ -14,43 +18,34 @@ export const categoryTree: Category[] = [
           { id: "iphone-15-pro-max", title: "iPhone 15 Pro Max", slug: "iphone-15-pro-max", children: [] },
           { id: "iphone-15-pro", title: "iPhone 15 Pro", slug: "iphone-15-pro", children: [] },
           { id: "iphone-15-plus", title: "iPhone 15 Plus", slug: "iphone-15-plus", children: [] },
-          { id: "iphone-15-standard", title: "iPhone 15", slug: "iphone-15-standard", children: [] },
+          { id: "iphone-15", title: "iPhone 15", slug: "iphone-15", children: [] },
         ],
       },
       {
-        id: "apple-airPods",
+        id: "apple-airpods-curated",
         title: "Apple AirPods",
-        slug: "apple-airPods",
+        slug: "apple-airpods",
         icon: "/icons/categories/apple-airpods.jpg",
         children: [
           { id: "airpods", title: "AirPods", slug: "airpods", children: [] },
           { id: "airpods-pro", title: "AirPods Pro", slug: "airpods-pro", children: [] },
           { id: "airpods-max", title: "AirPods Max", slug: "airpods-max", children: [] },
-          { id: "airpods-plus", title: "AirPods Plus", slug: "airpods-plus", children: [] },
         ],
       },
       {
-        id: "macbook",
-        title: "Macbook",
+        id: "macbook-curated",
+        title: "MacBook",
         slug: "macbook",
         icon: "/icons/categories/mackbook.png",
         children: [
-          { id: "m1", title: "MacBook Pro 13 (M1)", slug: "m1", children: [] },
-          { id: "m1-pro", title: "MacBook Pro 14 (M1 Pro)", slug: "m1-pro", children: [] },
-          { id: "m1-max", title: "M1 Max", slug: "m1-max", children: [] },
+          { id: "m1", title: "M1", slug: "m1", children: [] },
           { id: "m2", title: "M2", slug: "m2", children: [] },
-          { id: "m2-pro", title: "M2 Pro", slug: "m2-pro", children: [] },
-          { id: "m2-max", title: "M2 Max", slug: "m2-max", children: [] },
           { id: "m3", title: "M3", slug: "m3", children: [] },
-          { id: "m3-pro", title: "M3 Pro", slug: "m3-pro", children: [] },
-          { id: "m3-max", title: "M3 Max", slug: "m3-max", children: [] },
           { id: "m4", title: "M4", slug: "m4", children: [] },
-          { id: "m4-pro", title: "M4 Pro", slug: "m4-pro", children: [] },
-          { id: "m4-max", title: "M4 Max", slug: "m4-max", children: [] },
         ],
       },
       {
-        id: "ipad",
+        id: "ipad-curated",
         title: "iPad",
         slug: "ipad",
         icon: "/icons/categories/ipad.svg",
@@ -61,23 +56,21 @@ export const categoryTree: Category[] = [
         ],
       },
       {
-        id: "smartwatches",
+        id: "smartwatches-curated",
         title: "Smart Watches",
         slug: "smartwatches",
         icon: "/icons/categories/watches.png",
         children: [
-          { id: "apple-watch10", title: "Apple Watch Series 10", slug: "apple-watch10", children: [] },
-          { id: "apple-watch-ultra2", title: "Apple Watch Ultra 2", slug: "apple-watch-ultra2", children: [] },
-          { id: "samsung-galaxy-watch6", title: "Samsung Galaxy Watch 6", slug: "samsung-galaxy-watch6", children: [] },
+          { id: "apple-watch-series-10", title: "Apple Watch Series 10", slug: "apple-watch-series-10", children: [] },
+          { id: "apple-watch-ultra-2", title: "Apple Watch Ultra 2", slug: "apple-watch-ultra-2", children: [] },
+          { id: "samsung-galaxy-watch-6", title: "Samsung Galaxy Watch 6", slug: "samsung-galaxy-watch-6", children: [] },
           { id: "google-pixel-watch-3", title: "Google Pixel Watch 3", slug: "google-pixel-watch-3", children: [] },
-          { id: "huawei-watch-gt-4", title: "Huawei Watch GT 4", slug: "huawei-watch-gt-4", children: [] },
-
         ],
       },
       {
-        id: "príslušenstvo",
+        id: "prislusenstvo-curated",
         title: "Príslušenstvo",
-        slug: "príslušenstvo",
+        slug: "prislusenstvo",
         icon: "/icons/categories/pris.svg",
         children: [
           { id: "mcdodo-charger", title: "Mcdodo Charger", slug: "mcdodo-charger", children: [] },
@@ -87,13 +80,12 @@ export const categoryTree: Category[] = [
           { id: "charging-stand", title: "Charging Stand", slug: "charging-stand", children: [] },
           { id: "airpods-case", title: "AirPods Case", slug: "airpods-case", children: [] },
           { id: "fast-charger", title: "Fast Charger", slug: "fast-charger", children: [] },
-
         ],
       },
       {
-        id: "herná-zóna",
+        id: "herna-zona",
         title: "Herná zóna",
-        slug: "herná-zóna",
+        slug: "herna-zona",
         icon: "/icons/categories/herna.svg",
         children: [
           { id: "powerplay-zone", title: "PowerPlay Zone", slug: "powerplay-zone", children: [] },
@@ -102,7 +94,7 @@ export const categoryTree: Category[] = [
         ],
       },
       {
-        id: "smartspeaker",
+        id: "smartspeaker-curated",
         title: "Smart Speaker",
         slug: "smartspeaker",
         icon: "/icons/categories/speaker.png",
@@ -113,7 +105,7 @@ export const categoryTree: Category[] = [
         ],
       },
       {
-        id: "pc",
+        id: "pc-curated",
         title: "PC",
         slug: "pc",
         icon: "/icons/categories/pc.png",
@@ -124,7 +116,7 @@ export const categoryTree: Category[] = [
         ],
       },
       {
-        id: "elektronika",
+        id: "elektronika-curated",
         title: "Elektronika",
         slug: "elektronika",
         icon: "/icons/categories/elektronika.svg",
@@ -136,68 +128,77 @@ export const categoryTree: Category[] = [
       },
     ],
   },
+
+  /* ===========================
+   * iPhone
+   * =========================== */
   {
-    "id": "iphone",
-    "title": "iPhone",
-    "slug": "iphone",
-    "children": [
+    id: "iphone",
+    title: "iPhone",
+    slug: "iphone",
+    children: [
       {
-        "id": "iphone-11",
-        "title": "iPhone 11",
-        "slug": "iphone-11",
-        "icon": "/icons/categories/iphone/iphone.jpg",
-        "children": [
-          { "id": "iphone-11", "title": "iPhone 11", "slug": "iphone-11", "children": [] },
-          { "id": "iphone-11-pro", "title": "iPhone 11 Pro", "slug": "iphone-11-pro", "children": [] },
-          { "id": "iphone-11-pro-max", "title": "iPhone 11 Pro Max", "slug": "iphone-11-pro-max", "children": [] }
-        ]
+        id: "iphone-11",
+        title: "iPhone 11",
+        slug: "iphone-11",
+        icon: "/icons/categories/iphone/iphone.jpg",
+        children: [
+          { id: "iphone-11-base", title: "iPhone 11", slug: "iphone-11", children: [] },
+          { id: "iphone-11-pro", title: "iPhone 11 Pro", slug: "iphone-11-pro", children: [] },
+          { id: "iphone-11-pro-max", title: "iPhone 11 Pro Max", slug: "iphone-11-pro-max", children: [] },
+        ],
       },
       {
-        "id": "iphone-12",
-        "title": "iPhone 12",
-        "slug": "iphone-12",
-        "icon": "/icons/categories/iphone/iphone12.jpg",
-        "children": [
-          { "id": "iphone-12", "title": "iPhone 12", "slug": "iphone-12", "children": [] },
-          { "id": "iphone-12-pro", "title": "iPhone 12 Pro", "slug": "iphone-12-pro", "children": [] },
-          { "id": "iphone-12-pro-max", "title": "iPhone 12 Pro Max", "slug": "iphone-12-pro-max", "children": [] }
-        ]
+        id: "iphone-12",
+        title: "iPhone 12",
+        slug: "iphone-12",
+        icon: "/icons/categories/iphone/iphone12.jpg",
+        children: [
+          { id: "iphone-12-base", title: "iPhone 12", slug: "iphone-12", children: [] },
+          { id: "iphone-12-pro", title: "iPhone 12 Pro", slug: "iphone-12-pro", children: [] },
+          { id: "iphone-12-pro-max", title: "iPhone 12 Pro Max", slug: "iphone-12-pro-max", children: [] },
+        ],
       },
       {
-        "id": "iphone-13",
-        "title": "iPhone 13",
-        "slug": "iphone-13",
-        "icon": "/icons/categories/iphone/iphone.jpg",
-        "children": [
-          { "id": "iphone-13", "title": "iPhone 13", "slug": "iphone-13", "children": [] },
-          { "id": "iphone-13-pro", "title": "iPhone 13 Pro", "slug": "iphone-13-pro", "children": [] },
-          { "id": "iphone-13-pro-max", "title": "iPhone 13 Pro Max", "slug": "iphone-13-pro-max", "children": [] }
-        ]
+        id: "iphone-13",
+        title: "iPhone 13",
+        slug: "iphone-13",
+        icon: "/icons/categories/iphone/iphone.jpg",
+        children: [
+          { id: "iphone-13-base", title: "iPhone 13", slug: "iphone-13", children: [] },
+          { id: "iphone-13-pro", title: "iPhone 13 Pro", slug: "iphone-13-pro", children: [] },
+          { id: "iphone-13-pro-max", title: "iPhone 13 Pro Max", slug: "iphone-13-pro-max", children: [] },
+        ],
       },
       {
-        "id": "iphone-14",
-        "title": "iPhone 14",
-        "slug": "iphone-14",
-        "icon": "/icons/categories/iphone/iphone12.jpg",
-        "children": [
-          { "id": "iphone-14", "title": "iPhone 14", "slug": "iphone-14", "children": [] },
-          { "id": "iphone-14-pro", "title": "iPhone 14 Pro", "slug": "iphone-14-pro", "children": [] },
-          { "id": "iphone-14-pro-max", "title": "iPhone 14 Pro Max", "slug": "iphone-14-pro-max", "children": [] }
-        ]
+        id: "iphone-14",
+        title: "iPhone 14",
+        slug: "iphone-14",
+        icon: "/icons/categories/iphone/iphone12.jpg",
+        children: [
+          { id: "iphone-14-base", title: "iPhone 14", slug: "iphone-14", children: [] },
+          { id: "iphone-14-pro", title: "iPhone 14 Pro", slug: "iphone-14-pro", children: [] },
+          { id: "iphone-14-pro-max", title: "iPhone 14 Pro Max", slug: "iphone-14-pro-max", children: [] },
+        ],
       },
       {
-        "id": "iphone-15",
-        "title": "iPhone 15",
-        "slug": "iphone-15",
-        "icon": "/icons/categories/iphone/iphone12.jpg",
-        "children": [
-          { "id": "iphone-15", "title": "iPhone 15", "slug": "iphone-15", "children": [] },
-          { "id": "iphone-15-pro", "title": "iPhone 15 Pro", "slug": "iphone-15-pro", "children": [] },
-          { "id": "iphone-15-pro-max", "title": "iPhone 15 Pro Max", "slug": "iphone-15-pro-max", "children": [] }
-        ]
-      }
-    ]
+        id: "iphone-15",
+        title: "iPhone 15",
+        slug: "iphone-15",
+        icon: "/icons/categories/iphone/iphone12.jpg",
+        children: [
+          { id: "iphone-15-base", title: "iPhone 15", slug: "iphone-15", children: [] },
+          { id: "iphone-15-pro", title: "iPhone 15 Pro", slug: "iphone-15-pro", children: [] },
+          { id: "iphone-15-pro-max", title: "iPhone 15 Pro Max", slug: "iphone-15-pro-max", children: [] },
+          { id: "iphone-15-plus", title: "iPhone 15 Plus", slug: "iphone-15-plus", children: [] },
+        ],
+      },
+    ],
   },
+
+  /* ===========================
+   * Apple AirPods
+   * =========================== */
   {
     id: "apple-airpods",
     title: "Apple AirPods",
@@ -228,17 +229,16 @@ export const categoryTree: Category[] = [
         title: "AirPods Max",
         slug: "airpods-max",
         icon: "/icons/categories/airpods/airpods3.jpg",
-        children: [{ id: "airpods-max-all", title: "Všetky farby", slug: "airpods-max-all", children: [] }],
-      },
-      {
-        id: "airpods-max",
-        title: "AirPods",
-        slug: "airpods-max",
-        icon: "/icons/categories/airpods/airpods.jpg",
-        children: [{ id: "airpods-max-all", title: "Všetky farby", slug: "airpods-max-all", children: [] }],
+        children: [
+          { id: "airpods-max-all", title: "Všetky farby", slug: "airpods-max-all", children: [] },
+        ],
       },
     ],
   },
+
+  /* ===========================
+   * MacBook
+   * =========================== */
   {
     id: "macbook",
     title: "MacBook",
@@ -277,20 +277,12 @@ export const categoryTree: Category[] = [
           { id: "mac-pro", title: "Mac Pro", slug: "mac-pro", children: [] },
         ],
       },
-      {
-        id: "mac",
-        title: "Mac",
-        slug: "mac-desktop",
-        icon: "/icons/categories/mackbook/mackbook4.jpg",
-        children: [
-          { id: "imac-24", title: 'iMac 24"', slug: "imac-24", children: [] },
-          { id: "mac-mini", title: "Mac Mini", slug: "mac-mini", children: [] },
-          { id: "mac-studio", title: "Mac Studio", slug: "mac-studio", children: [] },
-          { id: "mac-pro", title: "Mac Pro", slug: "mac-pro", children: [] },
-        ],
-      },
     ],
   },
+
+  /* ===========================
+   * iPad
+   * =========================== */
   {
     id: "ipad",
     title: "iPad",
@@ -311,7 +303,9 @@ export const categoryTree: Category[] = [
         title: "iPad Air",
         slug: "ipad-air",
         icon: "/icons/categories/ipad/ipad2.jpg",
-        children: [{ id: "ipad-air-5", title: "iPad Air 5. generácia", slug: "ipad-air-5", children: [] }],
+        children: [
+          { id: "ipad-air-5", title: "iPad Air 5. generácia", slug: "ipad-air-5", children: [] },
+        ],
       },
       {
         id: "ipad-standard",
@@ -328,10 +322,16 @@ export const categoryTree: Category[] = [
         title: "iPad Mini",
         slug: "ipad-mini",
         icon: "/icons/categories/ipad/ipad4.jpg",
-        children: [{ id: "ipad-mini-6", title: "iPad Mini 6. generácia", slug: "ipad-mini-6", children: [] }],
+        children: [
+          { id: "ipad-mini-6", title: "iPad Mini 6. generácia", slug: "ipad-mini-6", children: [] },
+        ],
       },
     ],
   },
+
+  /* ===========================
+   * Apple Watch
+   * =========================== */
   {
     id: "apple-watch",
     title: "Apple Watch",
@@ -352,17 +352,25 @@ export const categoryTree: Category[] = [
         title: "Apple Watch Ultra",
         slug: "apple-watch-ultra",
         icon: "/icons/categories/watches/watch2.jpg",
-        children: [{ id: "watch-ultra-2", title: "Apple Watch Ultra 2", slug: "watch-ultra-2", children: [] }],
+        children: [
+          { id: "watch-ultra-2", title: "Apple Watch Ultra 2", slug: "watch-ultra-2", children: [] },
+        ],
       },
       {
         id: "apple-watch-se",
         title: "Apple Watch SE",
         slug: "apple-watch-se",
         icon: "/icons/categories/watches/watch3.jpg",
-        children: [{ id: "watch-se-2", title: "Apple Watch SE 2. generácia", slug: "watch-se-2", children: [] }],
+        children: [
+          { id: "watch-se-2", title: "Apple Watch SE 2. generácia", slug: "watch-se-2", children: [] },
+        ],
       },
     ],
   },
+
+  /* ===========================
+   * Príslušenstvo 
+   * =========================== */
   {
     id: "prislusenstvo",
     title: "Príslušenstvo",
@@ -399,120 +407,62 @@ export const categoryTree: Category[] = [
           { id: "cases", title: "Obaly", slug: "cases", children: [] },
         ],
       },
-      {
-        id: "charging-cable",
-        title: "Charging Cable",
-        slug: "charging-cable",
-        icon: "/icons/categories/accessories/ass4.jpg",
-        children: [
-          { id: "screen-protectors", title: "Ochranné sklá", slug: "screen-protectors", children: [] },
-          { id: "cases", title: "Obaly", slug: "cases", children: [] },
-        ],
-      },
-      {
-        id: "wireless-charger",
-        title: "Wireless Charger",
-        slug: "wireless-charger",
-        icon: "/icons/categories/accessories/ass5.jpg",
-        children: [
-          { id: "screen-protectors", title: "Ochranné sklá", slug: "screen-protectors", children: [] },
-          { id: "cases", title: "Obaly", slug: "cases", children: [] },
-        ],
-      },
-      {
-        id: "earphones",
-        title: "Earphones",
-        slug: "earphones",
-        icon: "/icons/categories/accessories/ass6.jpg",
-        children: [
-          { id: "screen-protectors", title: "Ochranné sklá", slug: "screen-protectors", children: [] },
-          { id: "cases", title: "Obaly", slug: "cases", children: [] },
-        ],
-      },
-      {
-        id: "power-adapter",
-        title: "Power Adapter",
-        slug: "power-adapter",
-        icon: "/icons/categories/accessories/ass7.jpg",
-        children: [
-          { id: "screen-protectors", title: "Ochranné sklá", slug: "screen-protectors", children: [] },
-          { id: "cases", title: "Obaly", slug: "cases", children: [] },
-        ],
-      },
-      {
-        id: "phone-holder",
-        title: "Phone Holder",
-        slug: "phone-holder",
-        icon: "/icons/categories/accessories/ass8.jpg",
-        children: [
-          { id: "screen-protectors", title: "Ochranné sklá", slug: "screen-protectors", children: [] },
-          { id: "cases", title: "Obaly", slug: "cases", children: [] },
-        ],
-      },
     ],
   },
+
+  /* ===========================
+   * Smart Speaker
+   * =========================== */
   {
-    id: "najpredávanejšie",
-    title: "Najpredávanejšie",
-    slug: "najpredávanejšie",
+    id: "smartspeaker",
+    title: "Smart Speaker",
+    slug: "smartspeaker",
     children: [
-      {
-        id: "iphone-15",
-        title: "iPhone 15",
-        slug: "iphone-15",
-        icon: "/icons/categories/iphone.svg",
-        children: [
-          { id: "iphone-15-pro-max", title: "iPhone 15 Pro Max", slug: "iphone-15-pro-max", children: [] },
-          { id: "iphone-15-pro", title: "iPhone 15 Pro", slug: "iphone-15-pro", children: [] },
-          { id: "iphone-15-plus", title: "iPhone 15 Plus", slug: "iphone-15-plus", children: [] },
-          { id: "iphone-15-standard", title: "iPhone 15", slug: "iphone-15-standard", children: [] },
-        ],
-      },
-      {
-        id: "iphone-14",
-        title: "iPhone 14",
-        slug: "iphone-14",
-        icon: "/icons/categories/iphone.svg",
-        children: [
-          { id: "iphone-14-pro-max", title: "iPhone 14 Pro Max", slug: "iphone-14-pro-max", children: [] },
-          { id: "iphone-14-pro", title: "iPhone 14 Pro", slug: "iphone-14-pro", children: [] },
-          { id: "iphone-14-plus", title: "iPhone 14 Plus", slug: "iphone-14-plus", children: [] },
-          { id: "iphone-14-standard", title: "iPhone 14", slug: "iphone-14-standard", children: [] },
-        ],
-      },
-      {
-        id: "pro-0",
-        title: "Pro 0",
-        slug: "Pro-0",
-        icon: "/icons/categories/iphone.svg",
-        children: [
-          { id: "iphone-cases", title: "Obaly a kryty", slug: "iphone-cases", children: [] },
-          { id: "iphone-chargers", title: "Nabíjačky", slug: "iphone-chargers", children: [] },
-          { id: "iphone-cables", title: "Káble", slug: "iphone-cables", children: [] },
-        ],
-      },
-      {
-        id: "pro-1",
-        title: "Pro 1",
-        slug: "pro-1",
-        icon: "/icons/categories/iphone.svg",
-        children: [
-          { id: "iphone-cases", title: "Obaly a kryty", slug: "iphone-cases", children: [] },
-          { id: "iphone-chargers", title: "Nabíjačky", slug: "iphone-chargers", children: [] },
-          { id: "iphone-cables", title: "Káble", slug: "iphone-cables", children: [] },
-        ],
-      },
-      {
-        id: "pro-2",
-        title: "Pro 2",
-        slug: "pro-2",
-        icon: "/icons/categories/iphone.svg",
-        children: [
-          { id: "iphone-cases", title: "Obaly a kryty", slug: "iphone-cases", children: [] },
-          { id: "iphone-chargers", title: "Nabíjačky", slug: "iphone-chargers", children: [] },
-          { id: "iphone-cables", title: "Káble", slug: "iphone-cables", children: [] },
-        ],
-      },
+      { id: "soundmax-pro", title: "SoundMax Pro", slug: "soundmax-pro", children: [] },
+      { id: "bassboom-mini", title: "BassBoom Mini", slug: "bassboom-mini", children: [] },
+      { id: "echowave-360", title: "EchoWave 360", slug: "echowave-360", children: [] },
+    ],
+  },
+
+  /* ===========================
+   * PC
+   * =========================== */
+  {
+    id: "pc",
+    title: "PC",
+    slug: "pc",
+    children: [
+      { id: "ultracore-x1", title: "UltraCore X1", slug: "ultracore-x1", children: [] },
+      { id: "nitrotech-g5", title: "NitroTech G5", slug: "nitrotech-g5", children: [] },
+      { id: "visionpro-z3", title: "VisionPro Z3", slug: "visionpro-z3", children: [] },
+    ],
+  },
+
+  /* ===========================
+   * Elektronika
+   * =========================== */
+  {
+    id: "elektronika",
+    title: "Elektronika",
+    slug: "elektronika",
+    children: [
+      { id: "electrohub", title: "ElectroHub", slug: "electrohub", children: [] },
+      { id: "technova", title: "TechNova", slug: "technova", children: [] },
+      { id: "powerlink", title: "PowerLink", slug: "powerlink", children: [] },
+    ],
+  },
+
+  /* ===========================
+   * Najpredávanejšie
+   * =========================== */
+  {
+    id: "najpredavanejsie",
+    title: "Najpredávanejšie",
+    slug: "najpredavanejsie",
+    children: [
+      { id: "best-iphone", title: "Najpredávanejšie iPhone", slug: "best-iphone", children: [] },
+      { id: "best-airpods", title: "Najpredávanejšie AirPods", slug: "best-airpods", children: [] },
+      { id: "best-apple-watch", title: "Najpredávanejšie Apple Watch", slug: "best-apple-watch", children: [] },
     ],
   },
 ];

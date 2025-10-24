@@ -6,6 +6,7 @@ import Image from "next/image";
 type Props = { title: string; href: string; image?: string };
 
 export default function CategoryCard({ title, href, image }: Props) {
+  console.log(image)
   return (
     <Link
       href={href}

@@ -1,24 +1,31 @@
-// lib/category-path.ts
+// src/lib/category-path.ts
 import type { Category } from "@/lib/types";
 
-// Slugs we don't want to start URLs with
 const CONTAINER_SLUGS = new Set(["všetky-kategórie", "najpredávanejšie"]);
+const norm = (s: string) => s.toLowerCase();
 
-// DFS to collect all paths to a slug
 function findAllPathsBySlug(tree: Category[], targetSlug: string, path: string[] = []): string[][] {
   const out: string[][] = [];
   for (const node of tree) {
     const next = [...path, node.slug];
-    if (node.slug === targetSlug) out.push(next);
+    if (norm(node.slug) === norm(targetSlug)) out.push(next);
     if (node.children?.length) out.push(...findAllPathsBySlug(node.children, targetSlug, next));
   }
   return out;
 }
 
-/** Prefer a path that does NOT start with a container. */
 export function findPreferredPathBySlug(tree: Category[], slug: string): string[] | null {
   const paths = findAllPathsBySlug(tree, slug);
   if (paths.length === 0) return null;
   const nonContainer = paths.find(p => !CONTAINER_SLUGS.has(p[0]));
   return nonContainer ?? paths[0];
+}
+
+export function hrefFromPath(
+  path: string[],
+  build: (a: string, b?: string, c?: string) => string
+) {
+  if (path.length === 1) return build(path[0]);
+  if (path.length === 2) return build(path[0], path[1]);
+  return build(path[0], path[1], path[2]); // extend if you ever go deeper
 }
