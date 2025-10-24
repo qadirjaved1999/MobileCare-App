@@ -1,8 +1,10 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# dependencies
-/node_modules
-/.pnp
+# ---------------------------------------------------------
+# Dependencies
+# ---------------------------------------------------------
+node_modules/
+.pnp.cjs
+.pnp.loader.mjs
 .pnp.*
 .yarn/*
 !.yarn/patches
@@ -10,32 +12,99 @@
 !.yarn/releases
 !.yarn/versions
 
-# testing
-/coverage
+# ---------------------------------------------------------
+# Testing
+# ---------------------------------------------------------
+coverage/
+jest-cache/
+playwright-report/
+test-results/
+*.coverage
+*.nyc_output/
 
-# next.js
-/.next/
-/out/
+# ---------------------------------------------------------
+# Next.js Build
+# ---------------------------------------------------------
+.next/
+out/
+.next/cache/
 
-# production
-/build
+# ---------------------------------------------------------
+# Production Builds
+# ---------------------------------------------------------
+build/
+dist/
+export/
 
-# misc
-.DS_Store
-*.pem
+# ---------------------------------------------------------
+# TypeScript
+# ---------------------------------------------------------
+*.tsbuildinfo
+next-env.d.ts
 
-# debug
+# ---------------------------------------------------------
+# Environment Files
+# ---------------------------------------------------------
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env.*
+
+# ---------------------------------------------------------
+# Logs & Debug
+# ---------------------------------------------------------
+logs/
+*.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-.pnpm-debug.log*
+pnpm-debug.log*
+lerna-debug.log*
 
-# env files (can opt-in for committing if needed)
-.env*
+# ---------------------------------------------------------
+# IDE / Editor Config
+# ---------------------------------------------------------
+.vscode/
+.idea/
+*.code-workspace
 
-# vercel
-.vercel
+# ---------------------------------------------------------
+# OS / Misc
+# ---------------------------------------------------------
+.DS_Store
+Thumbs.db
+*.pem
+*.tmp
+*.bak
+*.orig
+*.rej
+*.swp
+*.swo
 
-# typescript
-*.tsbuildinfo
-next-env.d.ts
+# ---------------------------------------------------------
+# Framework / Host Platforms
+# ---------------------------------------------------------
+.vercel/
+.netlify/
+.firebase/
+.storybook/
+storybook-static/
+
+# ---------------------------------------------------------
+# Cache / Temp
+# ---------------------------------------------------------
+.cache/
+tmp/
+temp/
+.eslintcache
+.stylelintcache
+.prettier-cache
+
+# ---------------------------------------------------------
+# Optional: Lock Files
+# (Uncomment if using monorepos or multiple managers)
+# package-lock.json
+# yarn.lock
+# pnpm-lock.yaml
