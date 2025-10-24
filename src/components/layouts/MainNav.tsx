@@ -20,7 +20,7 @@ console.log("href check:", buildCategoryHref("iphone"));
 
 export default function MainNav() {
   return (
-    <nav className="bg-ink text-white px-10 pb-4">
+    <nav className="hidden md:block bg-ink text-white px-8 pb-4">
       <div className="container-xl h-12 flex items-center justify-between gap-4">
         <div className="mr-2">
           <CategoryTrigger>
@@ -38,7 +38,7 @@ export default function MainNav() {
         </div>
 
         {/* section links */}
-        <div className="flex items-center gap-10 overflow-x-auto lg:mr-28">
+        <div className="hidden lg:flex items-center gap-10 xl:mr-28">
           {NAV.map((item) => (
             <Link key={item.slug} href={buildCategoryHref(item.slug)}>
               {item.label}
@@ -48,7 +48,7 @@ export default function MainNav() {
 
         {/* mobile search (optional) */}
         <div className="">
-          <SearchBar className="hidden md:block w-[290px]" />
+          <SearchBar className="hidden xl:block w-[290px]" />
         </div>
       </div>
     </nav>

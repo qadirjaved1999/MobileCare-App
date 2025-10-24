@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { Heart } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/context/CartContext";
@@ -51,7 +50,7 @@ export default function ProductCard({ product }: ProductCardProps) {
       {/* Wishlist */}
       <button
         aria-label="Pridať do zoznamu želaní"
-        className="absolute top-2 right-2 z-50 p-2 bg-black/60 text-white opacity-100 md:opacity-0 md:group-hover:opacity-100 cursor-pointer"
+        className="absolute top-2 right-2 z-50 p-2 opacity-100 cursor-pointer"
       >
         <Image
           src="/icons/wishlist.svg"

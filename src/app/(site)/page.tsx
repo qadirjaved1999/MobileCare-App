@@ -19,7 +19,7 @@ export default function HomePage() {
         <h1 className="text-2xl sm:text-3xl font-semibold">Hlavné kategórie</h1>
       </header>
 
-      <section className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
+      <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
         {categories.map(c => (
           <CategoryCard
             key={c.slug}

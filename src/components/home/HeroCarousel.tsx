@@ -126,7 +126,7 @@ const banners = useMemo(
                   }}
                 >
                   {/* card wrapper */}
-                  <div className="h-full w-full overflow-hidden bg-gray-100">
+                  <div className="h-full w-full overflow-hidden bg-white">
                     <div className="relative h-full w-full">
                       <Image
                         src={src}

@@ -1,7 +1,16 @@
 // src/lib/routing.ts
 import type { Category } from "@/lib/types";
 
-const norm = (s: string) => decodeURIComponent(s).toLowerCase();
+// const norm = (s: string) => decodeURIComponent(s).toLowerCase();
+
+function norm(s: string) {
+  return s
+    .normalize("NFKD")                    // split accents
+    .replace(/\p{Diacritic}/gu, "")       // remove diacritics
+    .toLowerCase()
+    .trim();
+}
+
 
 /** Build /category/<a>/<b>/<c> */
 export function buildCategoryHref(parent: string, child?: string, sub?: string) {
@@ -24,8 +33,17 @@ export function resolveCategoryBySegments(tree: Category[], segments: string[]):
 }
 
 /** Product appears if product.categorySlugs starts with current segments */
-export function productMatchesPath(productPath: string[] | undefined, segments: string[]) {
+// export function productMatchesPath(productPath: string[] | undefined, segments: string[]) {
+//   if (!productPath) return false;
+//   if (productPath.length < segments.length) return false;
+//   return segments.every((seg, i) => norm(productPath[i]) === norm(seg));
+// }
+
+export function productMatchesPath(
+  productPath: string[] | undefined,
+  segments: string[]
+): boolean {
   if (!productPath) return false;
-  if (productPath.length < segments.length) return false;
+  if (productPath.length < segments.length) return false; // product must be at or below this node
   return segments.every((seg, i) => norm(productPath[i]) === norm(seg));
 }

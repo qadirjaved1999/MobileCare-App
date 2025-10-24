@@ -23,13 +23,13 @@ export default function CategoryPage({ params }: Props) {
       <h1 className="text-2xl sm:text-3xl font-semibold">{node.title}</h1>
 
       {items.length > 0 ? (
-        <section className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+        <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {items.map(item => (
             <ProductCard key={item.id} product={item} />
           ))}
         </section>
       ) : (
-        <p className="text-gray-600">Pre túto kategóriu zatiaľ nemáme produkty.</p>
+        <p className="text-gray-600">Pre túto kategóriu zatiaľ nemáme produkty salman khan.</p>
       )}
     </main>
   );

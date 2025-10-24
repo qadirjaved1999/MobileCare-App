@@ -80,7 +80,7 @@ const sections = [
   ];
 
   return (
-    <footer className="bg-black text-white mt-16 pl-2 pr-10">
+    <footer className="bg-black text-white mt-16 pl-2 pr-2 sm:pr-10">
       {/* Top Grid */}
       <div className="container-xl py-14 grid grid-cols-1 lg:grid-cols-2 gap-10">
         {/* Left block */}
@@ -118,7 +118,7 @@ const sections = [
             />
           </div>
 
-          <h3 className="text-3xl md:text-4xl font-extrabold">
+          <h3 className="text-xl sm:text-3xl md:text-4xl font-extrabold">
             Získaj 10% zľavu
           </h3>
           <p className="mt-3 max-w-xl text-white/80 lg:mb-3">
@@ -127,7 +127,7 @@ const sections = [
           </p>
 
           {/* Newsletter input + tiny search button + submit */}
-          <div className="mt-6 flex gap-3 items-center">
+          <div className="hidden xl:block mt-6 flex gap-3 items-center">
             <div className="relative flex-1">
               <SearchBar placeholder="Vaša e-mailová adresa" />
             </div>
@@ -142,7 +142,7 @@ const sections = [
       </div>
 
       {/* Link columns */}
-      <div className="parent grid grid-cols-[1fr_1fr_2fr]">
+      <div className="hidden xl:block grid grid-cols-[1fr_1fr_2fr]">
         <div className="flex flex-col gap-28 pl-8">
           <div className="flex flex-col space-y-3">
             <h5 className="font-semibold mb-3">Kontaktné údaje</h5>
@@ -218,11 +218,11 @@ const sections = [
 
       {/* Countries + payment icons row */}
       <div className="container-xl pb-6">
-        <div className="grid grid-cols-2 lg:grid-cols-[1fr_1fr_1fr_1fr] gap-20 text-2xl md:text-3xl font-extrabold text-white/10 pl-8">
+        <div className="grid grid-cols-2 lg:grid-cols-[1fr_1fr_1fr_1fr] md:gap-20 sm:text-2xl md:text-3xl font-extrabold text-white/10 sm:pl-8 px-2 sm:px-0">
           <div className="text-start">Slovensko</div>
           <div className="text-center">Česká republika</div>
-          <div className="text-center">România</div>
-          <div className="text-end">Polska</div>
+          <div className="sm:text-center">România</div>
+          <div className="text-center sm:text-end">Polska</div>
         </div>
 
         <div className="mt-8 flex items-center justify-end">

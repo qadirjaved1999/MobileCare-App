@@ -12,7 +12,7 @@ export default function StoreInfoBar() {
   ];
 
   return (
-    <div className="bg-white text-[13px] py-1 px-10">
+    <div className="bg-white text-[13px] py-1 px-10 hidden sm:block">
       <div className="container-xl flex flex-col sm:flex-row items-center justify-between gap-2">
         {/* Empty Column */}
         <div className="flex items-center gap-3 text-white/70">
