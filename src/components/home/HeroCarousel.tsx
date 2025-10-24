@@ -1,16 +1,6 @@
 "use client";
 import Image from "next/image";
-import { useEffect, useMemo, useRef, useState } from "react";
-
-type Slide = {
-  id: string;
-  title: string;
-  subtitle?: string;
-  priceTag?: string;
-  cta?: { label: string; href: string };
-  image?: { src: string; alt: string };
-  bg?: string;
-};
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 const AUTO_ADVANCE_MS = 4500;
 
@@ -38,7 +28,6 @@ export default function HeroCarousel() {
 
   const trackRef = useRef<HTMLDivElement | null>(null);
   const hoverRef = useRef(false);
-  const resizeObserverRef = useRef<number | null>(null);
 
   // __________Handle responsive slide count__________
   useEffect(() => {
@@ -61,20 +50,30 @@ export default function HeroCarousel() {
   useEffect(() => {
     if (isPaused) return;
     const iv = setInterval(() => {
-      setIndex((prev) => (maxIndex === 0 ? 0 : prev >= maxIndex ? 0 : prev + 1));
+      setIndex((prev) =>
+        maxIndex === 0 ? 0 : prev >= maxIndex ? 0 : prev + 1
+      );
     }, AUTO_ADVANCE_MS);
     return () => clearInterval(iv);
   }, [maxIndex, isPaused, visible]);
-
-  // __________Manual navigation__________
-  const goPrev = () => setIndex((i) => (i <= 0 ? maxIndex : i - 1));
-  const goNext = () => setIndex((i) => (i >= maxIndex ? 0 : i + 1));
 
   // __________Slide transform calculation__________
   const slideWidthPercent = 100 / visible;
   const translateX = -(index * slideWidthPercent);
 
   // __________Keyboard navigation__________
+  // Manual navigation (wrapped in useCallback)
+  const goPrev = useCallback(
+    () => setIndex((i) => (i <= 0 ? maxIndex : i - 1)),
+    [maxIndex]
+  );
+
+  const goNext = useCallback(
+    () => setIndex((i) => (i >= maxIndex ? 0 : i + 1)),
+    [maxIndex]
+  );
+
+  // Keyboard navigation
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "ArrowLeft") goPrev();
@@ -82,7 +81,7 @@ export default function HeroCarousel() {
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [maxIndex]);
+  }, [goPrev, goNext]);
 
   return (
     // __________Carousel wrapper__________
@@ -121,7 +120,9 @@ export default function HeroCarousel() {
                         width={800}
                         height={480}
                         className="object-cover"
-                        priority={i === index || (i >= index && i < index + visible)}
+                        priority={
+                          i === index || (i >= index && i < index + visible)
+                        }
                       />
                     </div>
                   </div>
