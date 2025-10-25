@@ -49,7 +49,7 @@ export default function ProductCard({ product }: ProductCardProps) {
       {/* __________Wishlist button__________ */}
       <button
         aria-label="Pridať do zoznamu želaní"
-        className="absolute top-2 right-2 z-50 p-2 opacity-100 cursor-pointer"
+        className="absolute top-2 right-2 z-20 p-2 opacity-100 cursor-pointer"
       >
         <Image
           src="/icons/wishlist.svg"
